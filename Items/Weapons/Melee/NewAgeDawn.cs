@@ -1,0 +1,54 @@
+﻿using HandHmod.Items.Placeables.OreBars.BlissFire;
+using HandHmod.Items.Misc.Materials;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace HandHmod.Items.Weapons.Melee
+{
+	public class NewAgeDawn : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("New Age Dawn");
+			Tooltip.SetDefault("Your adventure is at its end. It's all over now...");
+		}
+
+		public override void SetDefaults()
+		{
+			item.damage = 1250;
+			item.melee = true;
+			item.width = 64;
+			item.height = 64;
+			item.useTime = 7;
+			item.useAnimation = 7;
+			item.knockBack = 15;
+			item.value = Item.buyPrice(gold: 50);
+			item.rare = ItemRarityID.Green;
+			item.UseSound = SoundID.Item1;
+			item.autoReuse = true;
+			item.crit = 20;
+			item.useStyle = ItemUseStyleID.SwingThrow;
+			item.shoot = ProjectileID.LaserMachinegunLaser;
+			item.shootSpeed = 50f;
+		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ModContent.ItemType<DeathLight>()); ;
+			recipe.AddIngredient(ModContent.ItemType<TheNightlight>()); ;
+			recipe.AddIngredient(ModContent.ItemType<ScourgeTooth>()); ;
+			recipe.AddIngredient(ModContent.ItemType<KnuckleCrusher>()); ;
+			recipe.AddIngredient(ModContent.ItemType<BlissFireBar>(), 25); ;
+			recipe.AddIngredient(ModContent.ItemType<HeavenDust>(), 15); ;
+			recipe.AddIngredient(ItemID.BrokenHeroSword);
+			recipe.AddIngredient(ItemID.LunarBar, 5);
+			recipe.AddIngredient(ItemID.BeetleHusk);
+			recipe.AddIngredient(ItemID.SpectreBar);
+			recipe.AddIngredient(ItemID.TurtleShell);
+			recipe.AddTile(TileID.Anvils);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
+	}
+}
