@@ -29,7 +29,7 @@ namespace HandHmod.NPCs.NeoArsenal
 			npc.aiStyle = 23;
 			aiType = NPCID.EnchantedSword;
 			animationType = NPCID.EnchantedSword;
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/LastBattle");
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
 		}
 	}
 }
