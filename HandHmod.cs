@@ -117,7 +117,7 @@ namespace HandHmod
 			// Make sure your logic here goes from lowest priority to highest so your intended priority is maintained.
 			if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven)
 			{
-				music = GetSoundSlot(SoundType.Music, "Sounds/Music/BlessingOfTheMoon");
+				music = GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiome");
 				priority = MusicPriority.BiomeHigh;
 			}
 		}
