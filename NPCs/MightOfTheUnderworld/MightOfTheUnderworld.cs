@@ -59,7 +59,7 @@ namespace HandHmod.NPCs.MightOfTheUnderworld
 
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RunningHell");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MightOfTheUnderworld");
 
             bossBag = mod.ItemType("MightOfTheUnderworldTreasureBag");
 		}
