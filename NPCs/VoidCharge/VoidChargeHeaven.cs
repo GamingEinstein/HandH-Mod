@@ -44,7 +44,7 @@ namespace HandHmod.NPCs.VoidCharge
 			npc.noTileCollide = true;
 			npc.knockBackResist = 0;
 			npc.value = Item.buyPrice(0, 1000000000, 0, 0);
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Descent");
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/VoidCharges");
 		}
 		public override void AI()
 		{
