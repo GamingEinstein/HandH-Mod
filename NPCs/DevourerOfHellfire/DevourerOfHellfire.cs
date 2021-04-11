@@ -33,7 +33,7 @@ namespace HandHmod.NPCs.DevourerOfHellfire
 			npc.width = 106;
 			npc.height = 120;
 			npc.aiStyle = -1;
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/LastBattle");
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DevourerOfHellfire");
 			bossBag = ModContent.ItemType<DevourerOfHellfireTreasureBag>();
 		}
 
