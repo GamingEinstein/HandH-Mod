@@ -34,7 +34,7 @@ namespace HandHmod.NPCs.NeoArsenal
 			aiType = NPCID.EnchantedSword;
 			animationType = NPCID.EnchantedSword;
 			bossBag = ModContent.ItemType<Items.Boss.DevourerOfHellfireTreasureBag>();
-			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/LastBattle");
+			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
 		}
 		public override void NPCLoot()
 		{
