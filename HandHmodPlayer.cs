@@ -87,7 +87,7 @@ namespace HandHmod
 		{
 			if (ZoneHeaven)
 			{
-				return mod.GetTexture("ExampleBiomeMapBackground");
+				return mod.GetTexture("HeavenMapBackground");
 			}
 			return null;
 		}
