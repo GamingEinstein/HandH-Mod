@@ -1,10 +1,10 @@
 using HandHmod;
 using HandHmod.Tiles;
-using HandHmod.NPCs.NeoArsenal;
-using HandHmod.NPCs.LakeScourge;
-using HandHmod.NPCs.MightOfTheUnderworld;
-using HandHmod.NPCs.DevourerOfHellfire;
-using HandHmod.NPCs.VoidCharge;
+using HandHmod.NPCs.Boss.NeoArsenal;
+using HandHmod.NPCs.Boss.LakeScourge;
+using HandHmod.NPCs.Boss.MightOfTheUnderworld;
+using HandHmod.NPCs.Boss.DevourerOfHellfire;
+using HandHmod.NPCs.Boss.VoidCharge;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -33,7 +33,7 @@ using HandHmod.Items.Weapons.Range;
 
 namespace HandHmod
 {
-	public class HandHmod : Mod
+    public class HandHmod : Mod
 	{
 		public bool MightOfTheMinion { get; internal set; }
 
