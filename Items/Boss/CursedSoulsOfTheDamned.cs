@@ -1,4 +1,4 @@
-﻿using HandHmod.NPCs.MightOfTheUnderworld;
+﻿using HandHmod.NPCs.Boss.MightOfTheUnderworld;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;

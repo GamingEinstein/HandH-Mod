@@ -1,4 +1,4 @@
-﻿using HandHmod.NPCs.LakeScourge;
+﻿using HandHmod.NPCs.Boss.LakeScourge;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;

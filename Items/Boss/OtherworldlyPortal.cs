@@ -1,7 +1,7 @@
 ﻿using HandHmod.Items.Boss;
-using HandHmod.NPCs.LakeScourge;
-using HandHmod.NPCs.MightOfTheUnderworld;
-using HandHmod.NPCs.DevourerOfHellfire;
+using HandHmod.NPCs.Boss.LakeScourge;
+using HandHmod.NPCs.Boss.MightOfTheUnderworld;
+using HandHmod.NPCs.Boss.DevourerOfHellfire;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;

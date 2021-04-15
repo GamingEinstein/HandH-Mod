@@ -1,4 +1,4 @@
-﻿using HandHmod.NPCs.DevourerOfHellfire;
+﻿using HandHmod.NPCs.Boss.DevourerOfHellfire;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
