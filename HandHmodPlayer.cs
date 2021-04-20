@@ -20,36 +20,36 @@ namespace HandHmod
 	{
 		public bool MightOfTheMinion;
 
-		public const int maxExampleLifeFruits = 10;
-		public int exampleLifeFruits;
+		public const int maxVoidHearts = 10;
+		public int voidHearts;
 
 		public bool ZoneHeaven;
 
 		public override void ResetEffects()
 		{
 			MightOfTheMinion = false;
-			player.statLifeMax2 += exampleLifeFruits * 10;
+			player.statLifeMax2 += voidHearts * 10;
 		}
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = mod.GetPacket();
 			packet.Write((byte)player.whoAmI);
-			packet.Write(exampleLifeFruits);
+			packet.Write(voidHearts);
 			packet.Send(toWho, fromWho);
 		}
 		public override TagCompound Save()
 		{
 			return new TagCompound {
-				{"exampleLifeFruits", exampleLifeFruits},
+				{"exampleLifeFruits", voidHearts},
 			};
 		}
 		public override void Load(TagCompound tag)
 		{
-			exampleLifeFruits = tag.GetInt("exampleLifeFruits");
+			voidHearts = tag.GetInt("exampleLifeFruits");
 		}
 		public override void UpdateBiomes()
 		{
-			ZoneHeaven = HandHmodWorld.HeavenTile > 50;
+			ZoneHeaven = HandHmodWorld.HeavenTile > 100;
 		}
 
 		public override bool CustomBiomesMatch(Player other)
