@@ -26,7 +26,7 @@ namespace HandHmod.Items.Misc
 		{
 			// Any mod that changes statLifeMax to be greater than 500 is broken and needs to fix their code.
 			// This check also prevents this item from being used before vanilla health upgrades are maxed out.
-			return player.statLifeMax == 500 && player.GetModPlayer<HandHmodPlayer>().exampleLifeFruits < HandHmodPlayer.maxExampleLifeFruits;
+			return player.statLifeMax == 500 && player.GetModPlayer<HandHmodPlayer>().voidHearts < HandHmodPlayer.maxVoidHearts;
 		}
 
 		public override bool UseItem(Player player)
@@ -40,7 +40,7 @@ namespace HandHmod.Items.Misc
 				player.HealEffect(2, true);
 			}
 			// This is very important. This is what makes it permanent.
-			player.GetModPlayer<HandHmodPlayer>().exampleLifeFruits += 1;
+			player.GetModPlayer<HandHmodPlayer>().voidHearts += 1;
 			// This handles the 2 achievements related to using any life increasing item or getting to exactly 500 hp and 200 mp.
 			// Ignored since our item is only useable after this achievement is reached
 			// AchievementsHelper.HandleSpecialEvent(player, 2);
