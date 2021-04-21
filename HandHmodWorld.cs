@@ -1,25 +1,17 @@
-﻿using HandHmod.Items;
+﻿using HandHmod.Generation;
+using HandHmod.Items.Misc.Lore;
+using HandHmod.Items.Weapons.Melee;
 using HandHmod.Tiles.HeavenFlame;
-using HandHmod.NPCs;
-using HandHmod.Tiles;
 using HandHmod.Tiles.HeavenTiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+using HandHmod.Tiles.HellFireFrag;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
-using HandHmod.Items.Weapons.Melee;
-using HandHmod.Tiles.HellFireFrag;
-using HandHmod.Items.Misc.Lore;
-using HandHmod.Generation;
 
 namespace HandHmod
 {
@@ -31,6 +23,7 @@ namespace HandHmod
         public static bool downedDevourerOfHellfire;
         public static bool downedNeoArsenal;
         public static bool downedVoidCharge;
+        public static bool downedDemigod;
 
         public override void Initialize()
         {
@@ -39,6 +32,7 @@ namespace HandHmod
             downedMightOfTheUnderworld = false;
             downedDevourerOfHellfire = false;
             downedVoidCharge = false;
+            downedDemigod = false;
         }
         public override TagCompound Save()
         {
@@ -63,6 +57,10 @@ namespace HandHmod
             {
                 downed.Add("VoidCharge");
             }
+            if (downedDemigod)
+            {
+                downed.Add("Demigod");
+            }
             return new TagCompound
             {
                 ["downed"] = downed
@@ -76,6 +74,7 @@ namespace HandHmod
             downedMightOfTheUnderworld = downed.Contains("MightOfTheUnderworld");
             downedDevourerOfHellfire = downed.Contains("DevourerOfHellfire");
             downedVoidCharge = downed.Contains("VoidCharge");
+            downedDemigod = downed.Contains("Demigod");
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -89,6 +88,7 @@ namespace HandHmod
                 downedMightOfTheUnderworld = flags[2];
                 downedDevourerOfHellfire = flags[3];
                 downedVoidCharge = flags[4];
+                downedDemigod = flags[5];
 
             }
             else
@@ -105,6 +105,7 @@ namespace HandHmod
             flags[2] = downedMightOfTheUnderworld;
             flags[3] = downedDevourerOfHellfire;
             flags[4] = downedVoidCharge;
+            flags[5] = downedDemigod;
             writer.Write(flags);
         }
         public override void NetReceive(BinaryReader reader)
@@ -115,6 +116,7 @@ namespace HandHmod
             downedMightOfTheUnderworld = flags[2];
             downedDevourerOfHellfire = flags[3];
             downedVoidCharge = flags[4];
+            downedDemigod = flags[5];
         }
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
@@ -122,7 +124,7 @@ namespace HandHmod
             if (num1 != -1)
             {
                 tasks.Insert(num1 + 1, (GenPass)new PassLegacy("Spreading the fragments", new WorldGenLegacyMethod(OreGeneration)));
-                
+
                 int num2 = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Slush"));
                 if (num2 != -1)
                 {
@@ -149,7 +151,7 @@ namespace HandHmod
                 }
 
             }
-            
+
             for (int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 7E-04); i++)
             {
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);

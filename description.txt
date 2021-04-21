@@ -1,6 +1,6 @@
 The signal rings from heaven and hell. The above and below, once great equals, reduced to shadows of themselves. Heaven's wrath, and Hell's fire continue to ravage this land. There's only one hero who can quell these forces... You...
 
-Adds in 70+ items, 3 bosses, and more
+Adds in 120+ items, 6 new bosses, and more
 
 Patch notes can be found on the Heaven & Hellfire discord from now on
 
@@ -8,7 +8,7 @@ Discord : https://discord.gg/3x3GyD3qye
 
 Mod creator: Project Elements
 
-Sprite artists: Project Elements, Pop The Bouncyball, Ian The Stylist, Lebyatpuya
+Sprite artists: Project Elements, Pop The Bouncyball, Ian The Stylist, Lebyatpuya, Tobias, Antho24
 
 Programmers: Project Elements, GamingEinstein
 
@@ -18,11 +18,17 @@ Music sources:
 
 DM Dokuro - Running hell 
 
-DM Dokuro - Blessing Of The Moon
-
 DM Dokuro - Last Battle
 
+DM Dokuro - Descent
+
+Peritune - Havoc
+
 Project Elements - Aquatic Manifestation
+
+Project Elements - Glimmer in the Bliss
+
+Project Elements - Ancient Onslaught
 
 Heaven & Hellfire alpha 0.0.1.6
 
