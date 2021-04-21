@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace HandHmod.Items.Boss
+namespace HandHmod.Items.Boss.HeavenHell
 {
     public class ArcaniTreasureBag : ModItem
     {

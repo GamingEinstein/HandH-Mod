@@ -1,6 +1,6 @@
 ﻿using HandHmod.Items.Placeables.OreBars.HeavenFlame;
 using HandHmod.Items.Placeables.OreBars.HellFireFrag;
-using HandHmod.NPCs.Boss.DevourerOfHellfire;
+using HandHmod.NPCs.DevourerOfHellfire;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

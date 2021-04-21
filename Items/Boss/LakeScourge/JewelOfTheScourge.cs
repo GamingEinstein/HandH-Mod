@@ -29,12 +29,12 @@ namespace HandHmod.Items.Boss.LakeScourge
 
         public override bool CanUseItem(Player player)
         {
-            return NPC.downedMechBossAny && player.ZoneBeach && !NPC.AnyNPCs(NPCType<NPCs.Boss.LakeScourge.LakeScourge>());
+            return NPC.downedMechBossAny && player.ZoneBeach && !NPC.AnyNPCs(NPCType<NPCs.LakeScourge.LakeScourge>());
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.LakeScourge.LakeScourge>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.LakeScourge.LakeScourge>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

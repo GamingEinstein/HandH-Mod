@@ -1,5 +1,4 @@
-﻿using HandHmod.NPCs.Boss.MightOfTheUnderworld;
-using HandHmod.NPCs.MightOfTheUnderworld;
+﻿using HandHmod.NPCs.MightOfTheUnderworld;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,12 +28,12 @@ namespace HandHmod.Items.Boss.MightOfTheUnderworld
 
         public override bool CanUseItem(Player player)
         {
-            return NPC.downedMoonlord && player.ZoneUnderworldHeight && !NPC.AnyNPCs(NPCType<NPCs.Boss.MightOfTheUnderworld.MightOfTheUnderworld>()) && !NPC.AnyNPCs(NPCType<MightOfTheSoul>()) && !NPC.AnyNPCs(NPCType<MightOfTheSoul2>()) && !NPC.AnyNPCs(NPCType<MightOfTheSoul3>());
+            return NPC.downedMoonlord && player.ZoneUnderworldHeight && !NPC.AnyNPCs(NPCType<NPCs.MightOfTheUnderworld.MightOfTheUnderworld>()) && !NPC.AnyNPCs(NPCType<MightOfTheSoul>()) && !NPC.AnyNPCs(NPCType<MightOfTheSoul2>()) && !NPC.AnyNPCs(NPCType<MightOfTheSoul3>());
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.MightOfTheUnderworld.MightOfTheUnderworld>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.MightOfTheUnderworld.MightOfTheUnderworld>());
             NPC.SpawnOnPlayer(player.whoAmI, NPCType<MightOfTheSoul>());
             NPC.SpawnOnPlayer(player.whoAmI, NPCType<MightOfTheSoul2>());
             NPC.SpawnOnPlayer(player.whoAmI, NPCType<MightOfTheSoul3>());

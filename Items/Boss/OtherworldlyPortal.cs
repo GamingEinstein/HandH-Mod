@@ -1,8 +1,7 @@
 ﻿using HandHmod.Items.Boss.DevourerOfHellfire;
 using HandHmod.Items.Boss.LakeScourge;
 using HandHmod.Items.Boss.MightOfTheUnderworld;
-using HandHmod.NPCs.Boss.DevourerOfHellfire;
-using HandHmod.NPCs.Boss.MightOfTheUnderworld;
+using HandHmod.NPCs.DevourerOfHellfire;
 using HandHmod.NPCs.MightOfTheUnderworld;
 using Terraria;
 using Terraria.ID;
@@ -34,18 +33,18 @@ namespace HandHmod.Items.Boss
         public override bool CanUseItem(Player player)
         {
             return HandHmodWorld.downedDevourerOfHellfire && player.ZoneOverworldHeight && !NPC.AnyNPCs(
-                NPCType<NPCs.Boss.MightOfTheUnderworld.MightOfTheUnderworld>())
+                NPCType<NPCs.MightOfTheUnderworld.MightOfTheUnderworld>())
                 && !NPC.AnyNPCs(NPCType<MightOfTheSoul>())
                 && !NPC.AnyNPCs(NPCType<MightOfTheSoul2>())
                 && !NPC.AnyNPCs(NPCType<MightOfTheSoul3>())
-                && !NPC.AnyNPCs(NPCType<NPCs.Boss.LakeScourge.LakeScourge>())
+                && !NPC.AnyNPCs(NPCType<NPCs.LakeScourge.LakeScourge>())
                 && !NPC.AnyNPCs(NPCType<DevourerOfHellfireHead>());
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.LakeScourge.LakeScourge>());
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.Boss.MightOfTheUnderworld.MightOfTheUnderworld>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.LakeScourge.LakeScourge>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.MightOfTheUnderworld.MightOfTheUnderworld>());
             NPC.SpawnOnPlayer(player.whoAmI, NPCType<MightOfTheSoul>());
             NPC.SpawnOnPlayer(player.whoAmI, NPCType<MightOfTheSoul2>());
             NPC.SpawnOnPlayer(player.whoAmI, NPCType<MightOfTheSoul3>());
