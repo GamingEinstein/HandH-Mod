@@ -1,4 +1,5 @@
 ﻿using HandHmod.Items.Boss.DevourerOfHellfire;
+using HandHmod.Items.Boss.NeoArsenal;
 using HandHmod.Items.Misc.Materials;
 using HandHmod.Items.Weapons.Melee;
 using Terraria;
@@ -33,8 +34,8 @@ namespace HandHmod.NPCs.NeoArsenal
             npc.aiStyle = 23;
             aiType = NPCID.EnchantedSword;
             animationType = NPCID.EnchantedSword;
-            bossBag = ModContent.ItemType<Items.Boss.NeoArsenalTreasureBag>();
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/AncientOnslaught");
+            bossBag = ModContent.ItemType<NeoArsenalTreasureBag>();
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

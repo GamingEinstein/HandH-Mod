@@ -52,7 +52,7 @@ namespace HandHmod.NPCs.NeoTheLesser
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath7;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Rapid4");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Neo");
             //bossBag = ModContent.ItemType<NeoTreasureBag>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

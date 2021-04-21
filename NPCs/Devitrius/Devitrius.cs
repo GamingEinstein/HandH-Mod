@@ -1,5 +1,5 @@
-﻿using HandHmod.Items.Boss;
-using HandHmod.Items.Boss.DevourerOfHellfire;
+﻿using HandHmod.Items.Boss.DevourerOfHellfire;
+using HandHmod.Items.Boss.HeavenHell;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -44,7 +44,7 @@ namespace HandHmod.NPCs.Devitrius
             npc.knockBackResist = 0;
             npc.value = Item.buyPrice(0, 1000000000, 0, 0);
             bossBag = ModContent.ItemType<DevitriusTreasureBag>();
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Battlefield3");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenHellBoss");
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

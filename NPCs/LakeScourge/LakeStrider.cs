@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace HandHmod.NPCs.Boss.LakeScourge
+namespace HandHmod.NPCs.LakeScourge
 {
     public class LakeStrider : ModNPC
     {

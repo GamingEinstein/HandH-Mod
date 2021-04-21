@@ -11,12 +11,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace HandHmod.NPCs.Boss.LakeScourge
+namespace HandHmod.NPCs.LakeScourge
 {
     [AutoloadBossHead]
     public class LakeScourge : ModNPC
     {
-        public const string LakeScourgeHead = "HandHmod/NPCs/Boss/LakeScourge/LakeScourge_Head_Boss";
+        public const string LakeScourgeHead = "HandHmod/NPCs/LakeScourge/LakeScourge_Head_Boss";
 
         public override bool Autoload(ref string name)
         {

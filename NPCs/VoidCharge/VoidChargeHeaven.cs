@@ -1,3 +1,4 @@
+using HandHmod.Items.Boss.VoidCharges;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -41,8 +42,8 @@ namespace HandHmod.NPCs.VoidCharge
             npc.noTileCollide = true;
             npc.knockBackResist = 0;
             npc.value = Item.buyPrice(0, 1000000000, 0, 0);
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Descent");
-            bossBag = ModContent.ItemType<Items.Boss.VoidChargeTreasureBag>();
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/VoidCharges");
+            bossBag = ModContent.ItemType<VoidChargeTreasureBag>();
         }
         public override void AI()
         {
@@ -535,7 +536,7 @@ namespace HandHmod.NPCs.VoidCharge
         {
             if (Main.rand.NextBool(10))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Boss.VoidChargeTrophyHeaven>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<VoidChargeTrophyHeaven>());
             }
             if (Main.expertMode)
             {
