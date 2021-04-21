@@ -1,25 +1,24 @@
-﻿using HandHmod.Items.Placeables.OreBars.HeavenFlame;
-using HandHmod.Items.Placeables.OreBars.HellFireFrag;
-using HandHmod.NPCs.Boss.DevourerOfHellfire;
+﻿using HandHmod.NPCs.Arcani;
+using HandHmod.NPCs.Devitrius;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace HandHmod.Items.Boss.DevourerOfHellfire
+namespace HandHmod.Items.Boss
 {
-    public class CurseOfHellfire : ModItem
+    public class ArtifactOfHeavenAndHell : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Curse Of Hellfire");
-            Tooltip.SetDefault("Summons the Devourer Of Hellfire");
+            DisplayName.SetDefault("Artifact of Heaven and Hell");
+            Tooltip.SetDefault("Summons Arcani and Devitrius");
         }
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.height = 32;
+            item.width = 26;
+            item.height = 26;
             item.maxStack = 1;
             item.rare = ItemRarityID.LightRed;
             item.useAnimation = 45;
@@ -30,23 +29,22 @@ namespace HandHmod.Items.Boss.DevourerOfHellfire
 
         public override bool CanUseItem(Player player)
         {
-            return HandHmodWorld.downedMightOfTheUnderworld && player.ZoneOverworldHeight && !NPC.AnyNPCs(NPCType<DevourerOfHellfireHead>());
+            return HandHmodWorld.downedVoidCharge && player.ZoneOverworldHeight && !NPC.AnyNPCs(NPCType<Arcani>()) && !NPC.AnyNPCs(NPCType<Devitrius>());
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<DevourerOfHellfireHead>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<Arcani>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<Devitrius>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LunarBar, 20);
-            recipe.AddIngredient(ItemID.SolarTablet);
-            recipe.AddIngredient(ItemID.CelestialSigil);
-            recipe.AddIngredient(ItemType<HeavenFlameBar>(), 20); ;
-            recipe.AddIngredient(ItemType<HellFireBar>(), 50); ;
+            recipe.AddIngredient(ItemType<Items.Misc.Materials.IIVoidEssenceII>(), 90); ;
+            recipe.AddIngredient(ItemID.LunarBar, 15);
+            recipe.AddIngredient(ItemType<Items.Placeables.OreBars.HeavenFlame.HeavenFlameBar>(), 5); ;
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

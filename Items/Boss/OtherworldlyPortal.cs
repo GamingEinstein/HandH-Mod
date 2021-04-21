@@ -1,12 +1,12 @@
 ﻿using HandHmod.Items.Boss.DevourerOfHellfire;
 using HandHmod.Items.Boss.LakeScourge;
 using HandHmod.Items.Boss.MightOfTheUnderworld;
-using HandHmod.NPCs.Boss.LakeScourge;
-using HandHmod.NPCs.Boss.MightOfTheUnderworld;
 using HandHmod.NPCs.Boss.DevourerOfHellfire;
+using HandHmod.NPCs.Boss.MightOfTheUnderworld;
+using HandHmod.NPCs.MightOfTheUnderworld;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace HandHmod.Items.Boss

@@ -1,14 +1,14 @@
-﻿using HandHmod.Items.Developer.ProjectElements;
-using HandHmod.Items.Developer.Pop;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
-using HandHmod.Items.Placeables.OreBars.HellFireFrag;
+﻿using HandHmod.Items.Developer.Pop;
+using HandHmod.Items.Developer.ProjectElements;
 using HandHmod.Items.Placeables.OreBars.HeavenFlame;
+using HandHmod.Items.Placeables.OreBars.HellFireFrag;
 using HandHmod.Items.Weapons.Melee;
-using HandHmod.Items.Weapons.Summon;
 using HandHmod.Items.Weapons.Range;
+using HandHmod.Items.Weapons.Summon;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace HandHmod.Items.Boss.MightOfTheUnderworld
 {
@@ -55,20 +55,20 @@ namespace HandHmod.Items.Boss.MightOfTheUnderworld
                     player.QuickSpawnItem(ItemType<HeavenAnnihilator>());
                     if (Main.rand.NextBool(100))
                     {
-                            player.QuickSpawnItem(ItemType<PopArmourHelmet>());
-                            player.QuickSpawnItem(ItemType<PopArmourGreaves>());
-                            player.QuickSpawnItem(ItemType<PopArmourChestplate>());
-                            if (Main.rand.Next(7) == 0)
-                            {
-                                player.QuickSpawnItem(mod.ItemType("CursedSoulsOfTheDamned"));
-                            }
-                            if (Main.rand.Next(100) == 0)
-                            {
-                                player.QuickSpawnItem(mod.ItemType("MightOfTheUnderworldTreasureBag"));
-                            }
+                        player.QuickSpawnItem(ItemType<PopArmourHelmet>());
+                        player.QuickSpawnItem(ItemType<PopArmourGreaves>());
+                        player.QuickSpawnItem(ItemType<PopArmourChestplate>());
+                        if (Main.rand.Next(7) == 0)
+                        {
+                            player.QuickSpawnItem(mod.ItemType("CursedSoulsOfTheDamned"));
+                        }
+                        if (Main.rand.Next(100) == 0)
+                        {
+                            player.QuickSpawnItem(mod.ItemType("MightOfTheUnderworldTreasureBag"));
                         }
                     }
                 }
             }
         }
     }
+}

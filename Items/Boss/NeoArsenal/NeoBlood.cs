@@ -1,19 +1,16 @@
-﻿using HandHmod.Items.Placeables.OreBars.HeavenFlame;
-using HandHmod.Items.Placeables.OreBars.HellFireFrag;
-using HandHmod.NPCs.Boss.DevourerOfHellfire;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace HandHmod.Items.Boss.DevourerOfHellfire
+namespace HandHmod.Items.Boss
 {
-    public class CurseOfHellfire : ModItem
+    public class NeoBlood : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Curse Of Hellfire");
-            Tooltip.SetDefault("Summons the Devourer Of Hellfire");
+            DisplayName.SetDefault("Neo's Blood");
+            Tooltip.SetDefault("Summons Neo's Arsenal");
         }
 
         public override void SetDefaults()
@@ -30,24 +27,25 @@ namespace HandHmod.Items.Boss.DevourerOfHellfire
 
         public override bool CanUseItem(Player player)
         {
-            return HandHmodWorld.downedMightOfTheUnderworld && player.ZoneOverworldHeight && !NPC.AnyNPCs(NPCType<DevourerOfHellfireHead>());
+            return NPC.downedBoss2 && player.ZoneDungeon && !NPC.AnyNPCs(NPCType<NPCs.NeoArsenal.NeoSword>()) && !NPC.AnyNPCs(NPCType<NPCs.NeoArsenal.NeoScythe>()) && !NPC.AnyNPCs(NPCType<NPCs.NeoArsenal.NeoSpear>());
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, NPCType<DevourerOfHellfireHead>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.NeoArsenal.NeoSword>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.NeoArsenal.NeoScythe>());
+            NPC.SpawnOnPlayer(player.whoAmI, NPCType<NPCs.NeoArsenal.NeoSpear>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LunarBar, 20);
-            recipe.AddIngredient(ItemID.SolarTablet);
-            recipe.AddIngredient(ItemID.CelestialSigil);
-            recipe.AddIngredient(ItemType<HeavenFlameBar>(), 20); ;
-            recipe.AddIngredient(ItemType<HellFireBar>(), 50); ;
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(ItemType<Items.Misc.Materials.HeavenDust>(), 10); ;
+            recipe.AddIngredient(ItemID.GoldShortsword);
+            recipe.AddIngredient(ItemID.PlatinumShortsword);
+            recipe.AddIngredient(ItemID.BottledWater, 5);
+            recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

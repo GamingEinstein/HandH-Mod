@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
-using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
+﻿using HandHmod.Items.Placeables.OreBars.HeavenFlame;
 using HandHmod.Items.Placeables.OreBars.HellFireFrag;
-using HandHmod.Items.Placeables.OreBars.HeavenFlame;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace HandHmod.Items.Armor.EvilIncarnate
 {

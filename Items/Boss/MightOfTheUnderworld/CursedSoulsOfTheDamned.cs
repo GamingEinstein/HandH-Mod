@@ -1,7 +1,8 @@
 ﻿using HandHmod.NPCs.Boss.MightOfTheUnderworld;
+using HandHmod.NPCs.MightOfTheUnderworld;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace HandHmod.Items.Boss.MightOfTheUnderworld

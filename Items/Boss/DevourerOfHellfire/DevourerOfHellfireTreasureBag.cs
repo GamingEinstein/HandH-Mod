@@ -1,14 +1,14 @@
-﻿using HandHmod.Items.Developer.ProjectElements;
-using HandHmod.Items.Developer.Pop;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
-using HandHmod.Items.Placeables.OreBars.HeavenFlame;
+﻿using HandHmod.Items.Developer.Pop;
+using HandHmod.Items.Developer.ProjectElements;
 using HandHmod.Items.Misc.Materials;
-using HandHmod.Items.Weapons.Melee;
-using HandHmod.Items.Weapons.Magic;
+using HandHmod.Items.Placeables.OreBars.HeavenFlame;
 using HandHmod.Items.Placeables.OreBars.HellFireFrag;
+using HandHmod.Items.Weapons.Magic;
+using HandHmod.Items.Weapons.Melee;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace HandHmod.Items.Boss.DevourerOfHellfire
 {

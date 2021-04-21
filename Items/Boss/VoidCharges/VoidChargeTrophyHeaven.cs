@@ -3,14 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace HandHmod.Items.Boss.LakeScourge
+namespace HandHmod.Items.Boss
 {
-    public class LakeScourgeTrophy : ModItem
+    public class VoidChargeTrophyHeaven : ModItem
     {
         public override void SetDefaults()
         {
-            item.width = 30;
-            item.height = 30;
+            item.width = 36;
+            item.height = 32;
             item.maxStack = 99;
             item.useTurn = true;
             item.autoReuse = true;
@@ -20,7 +20,7 @@ namespace HandHmod.Items.Boss.LakeScourge
             item.consumable = true;
             item.value = 50000;
             item.rare = ItemRarityID.Blue;
-            item.createTile = TileType<LakeScourgeTrophyPlaced>();
+            item.createTile = TileType<VoidChargeTrophyHeavenPlaced>();
             item.placeStyle = 0;
         }
     }

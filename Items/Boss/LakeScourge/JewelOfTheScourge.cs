@@ -1,10 +1,9 @@
-﻿using HandHmod.NPCs.Boss.LakeScourge;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using static Terraria.ModLoader.ModContent;
+﻿using HandHmod.Items.Misc.Materials;
 using HandHmod.Items.Placeables.OreBars.HeavenFlame;
-using HandHmod.Items.Misc.Materials;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace HandHmod.Items.Boss.LakeScourge
 {
