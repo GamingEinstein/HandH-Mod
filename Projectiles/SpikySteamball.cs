@@ -2,27 +2,27 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace HandHmod.Projectiles.Bosses
+namespace HandHmod.Projectiles
 {
-    public class MightOfTheUnderworldProjectile : ModProjectile
+    public class SpikySteamball : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Death beam!");
+            DisplayName.SetDefault("Spiky Steamball!");
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 18;
-            projectile.height = 42;
+            projectile.width = 64;
+            projectile.height = 64;
             projectile.aiStyle = 1;
-            aiType = ProjectileID.Bullet;
-            projectile.friendly = false;
+            aiType = ProjectileID.MolotovCocktail;
+            projectile.friendly = true;
             projectile.ignoreWater = true;
             projectile.penetrate = 1;
             projectile.timeLeft = 500;
-            projectile.tileCollide = false;
-            projectile.hostile = true;
+            projectile.tileCollide = true;
+            projectile.hostile = false;
             projectile.scale = 1.2f;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
@@ -36,6 +36,7 @@ namespace HandHmod.Projectiles.Bosses
         public override void AI()
         {
             projectile.velocity.Y += projectile.ai[0];
+            projectile.velocity = (1 * projectile.velocity);
         }
 
     }

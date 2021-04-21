@@ -1,9 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace HandHmod.Projectiles.Bosses
 {

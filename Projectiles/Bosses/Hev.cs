@@ -4,15 +4,16 @@ using Terraria.ModLoader;
 
 namespace HandHmod.Projectiles.Bosses
 {
-    public class MightOfTheUnderworldProjectile : ModProjectile
+    public class Hev : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Death beam!");
+            DisplayName.SetDefault("Slayer Beam!");
         }
 
         public override void SetDefaults()
         {
+            projectile.damage = 500;
             projectile.width = 18;
             projectile.height = 42;
             projectile.aiStyle = 1;
