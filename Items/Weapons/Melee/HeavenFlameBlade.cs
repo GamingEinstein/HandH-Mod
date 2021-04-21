@@ -37,7 +37,7 @@ namespace HandHmod.Items.Weapons.Melee
 			//use useStyle 4 for use like a life crystal,
 			//and use useStyle 5 for staffs or guns
 			item.useStyle = ItemUseStyleID.SwingThrow; // 1 is the useStyle
-			item.shoot = 503;
+			item.shoot = ProjectileID.StarWrath;
 			item.shootSpeed = 1f;
 		}
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

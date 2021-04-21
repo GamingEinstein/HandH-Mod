@@ -30,7 +30,7 @@ namespace HandHmod.Items.Weapons.Melee
 			item.autoReuse = true;
 			item.crit = 100;
 			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.shoot = 503;
+			item.shoot = ProjectileID.StarWrath;
 			item.shootSpeed = 10f;
 			if (HandHmodWorld.downedMightOfTheUnderworld)
 			{

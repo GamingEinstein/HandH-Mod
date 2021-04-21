@@ -21,10 +21,10 @@ namespace HandHmod.Items.Weapons.Melee
 			item.height = 900;
 			item.useTime = 5;
 			item.useAnimation = 5;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.knockBack = 8;
 			item.value = 1000000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
