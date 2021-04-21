@@ -1,26 +1,25 @@
-﻿using HandHmod.Items.Misc.Materials;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace HandHmod.NPCs.Heaven
+namespace HandHmod.NPCs.Boss.LakeScourge
 {
-    public class HeavenSeeker : ModNPC
+    public class LakeStrider : ModNPC
     {
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Heaven Seeker");
+            DisplayName.SetDefault("Lake Strider");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Crimera];
         }
 
         public override void SetDefaults()
         {
-            npc.width = 32;
-            npc.height = 64;
-            npc.damage = 20;
-            npc.defense = 5;
-            npc.lifeMax = 200;
+            npc.width = 30;
+            npc.height = 48;
+            npc.damage = 200;
+            npc.defense = 1;
+            npc.lifeMax = 30;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath7;
             npc.lavaImmune = true;
@@ -28,18 +27,18 @@ namespace HandHmod.NPCs.Heaven
             npc.value = 6000f;
             npc.knockBackResist = 0.5f;
             npc.aiStyle = 5;
-            npc.noTileCollide = false;
+            npc.noTileCollide = true;
             aiType = NPCID.Crimera;
             animationType = NPCID.Crimera;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.GetModPlayer<HandHmodPlayer>().ZoneHeaven ? .5f : .5f;
+            return SpawnCondition.Ocean.Chance * 0.5f;
         }
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HeavenDust>(), 2);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LakeSpiritFragment"), 2);
         }
     }
 }
