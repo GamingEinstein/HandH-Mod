@@ -17,6 +17,9 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
 using HandHmod.Items.Weapons.Melee;
+using HandHmod.Tiles.HellFireFrag;
+using HandHmod.Items.Misc.Lore;
+using HandHmod.Generation;
 
 namespace HandHmod
 {
@@ -115,22 +118,26 @@ namespace HandHmod
         }
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            int shiniesIndex = tasks.FindIndex(x => x.Name.Equals("Shinies"));
-            int microBiomesIndex = tasks.FindIndex(x => x.Name.Equals("Micro Biomes"));
-            if (shiniesIndex != -1)
+            int num1 = tasks.FindIndex(x => x.Name.Equals("Shinies"));
+            if (num1 != -1)
             {
-                tasks.Insert(shiniesIndex + 1, new PassLegacy("HandHmod hell ores Generation", OreGeneration));
-                tasks.Insert(shiniesIndex + 1, new PassLegacy("HandHmod heaven ores Generation", OreGeneration));
-            }
-            if (microBiomesIndex != -1)
-            {
-                tasks.Insert(microBiomesIndex + 1, new PassLegacy("Constructing the Heavens", HeavenlyPlace));
+                tasks.Insert(num1 + 1, (GenPass)new PassLegacy("Spreading the fragments", new WorldGenLegacyMethod(OreGeneration)));
+                
+                int num2 = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Slush"));
+                if (num2 != -1)
+                {
+                    tasks.Insert(num2 + 1, (GenPass)new PassLegacy("Placing the Heavens", new WorldGenLegacyMethod(GenHeavenClear)));
+                    int num3 = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Micro Biomes"));
+                    if (num3 != -1)
+                    {
+                        tasks.Insert(num3 + 1, (GenPass)new PassLegacy("Constructing the Heavens", new WorldGenLegacyMethod(GenHeaven)));
+                    }
+                }
             }
         }
         private void OreGeneration(GenerationProgress progress)
         {
-            progress.Message = "Generating HandHmod Ores";
-
+            progress.Message = "Spreading the Fragments";
             for (int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 7E-04); i++)
             {
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);
@@ -138,12 +145,11 @@ namespace HandHmod
 
                 Tile tile = Main.tile[x, y];
                 {
-                    WorldGen.TileRunner(x, y, WorldGen.genRand.Next(1, 7), WorldGen.genRand.Next(2, 5), ModContent.TileType<Tiles.HellFireFrag.HellFireFragment>());
+                    WorldGen.TileRunner(x, y, WorldGen.genRand.Next(1, 7), WorldGen.genRand.Next(2, 5), ModContent.TileType<HellFireFragment>());
                 }
 
             }
-            progress.Message = "Generating HandHmod Ores";
-
+            
             for (int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 7E-04); i++)
             {
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);
@@ -153,29 +159,64 @@ namespace HandHmod
                 WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 10), WorldGen.genRand.Next(2, 5), ModContent.TileType<HeavenFlameOre>());
             }
         }
-        private void HeavenlyPlace(GenerationProgress progress)
+        private void GenHeaven(GenerationProgress progress)
         {
-            progress.Message = "Constructing the Heavens...";
-
-            for (int z = 0; z < 1; z++)
+            int x = (int)((float)Main.maxTilesX * 0f);
+            int y = (int)((float)Main.maxTilesY * 0f);
+            if (Main.dungeonX < Main.maxTilesX / 2)
             {
-                int x = WorldGen.dungeonX;
-                int y = (int)WorldGen.worldSurface;
-                int TileType = ModContent.TileType<HeavenTile>();
-
-                if (x / 2 < WorldGen.dungeonX)
-                {
-                    WorldGen.TileRunner(x + 300, y, 300, 150, TileType, false, 0, 0, false, true);
-                }
-                else
-                {
-                    WorldGen.TileRunner(x - 300, y, 300, 150, TileType, false, 0, 0, false, true);
-                }
+                x = (int)((float)Main.dungeonX + 700);
             }
+            else
+            {
+                x = (int)((float)Main.dungeonX - 700);
+            }
+
+            if (Main.maxTilesX == 4200 && Main.maxTilesY == 1200)
+            {
+                y = (int)((float)Main.maxTilesY * 0.38f);
+            }
+            if (Main.maxTilesX == 6400 && Main.maxTilesY == 1800)
+            {
+                y = (int)((float)Main.maxTilesY * 0.32f);
+            }
+            if (Main.maxTilesX == 8400 && Main.maxTilesY == 2400)
+            {
+                y = (int)((float)Main.maxTilesY * 0.28f);
+            }
+            Heavens.Generate(x, y);
+        }
+
+        private void GenHeavenClear(GenerationProgress progress)
+        {
+            int x = (int)((float)Main.maxTilesX * 0f);
+            int y = (int)((float)Main.maxTilesY * 0f);
+            if (Main.dungeonX < Main.maxTilesX / 2)
+            {
+                x = (int)((float)Main.dungeonX + 700);
+            }
+            else
+            {
+                x = (int)((float)Main.dungeonX - 700);
+            }
+
+            if (Main.maxTilesX == 4200 && Main.maxTilesY == 1200)
+            {
+                y = (int)((float)Main.maxTilesY * 0.38f);
+            }
+            if (Main.maxTilesX == 6400 && Main.maxTilesY == 1800)
+            {
+                y = (int)((float)Main.maxTilesY * 0.32f);
+            }
+            if (Main.maxTilesX == 8400 && Main.maxTilesY == 2400)
+            {
+                y = (int)((float)Main.maxTilesY * 0.28f);
+            }
+            HeavensClear.Generate(x, y);
         }
         public override void PostWorldGen()
         {
-            int[] itemsToPlaceInLockedFrozenChests = { ModContent.ItemType<HeavenAnnihilator>(), ModContent.ItemType<Items.Misc.Lore.IceWasteland>() };
+            int[] itemsToPlaceInLockedFrozenChests = { ModContent.ItemType<HeavenAnnihilator>(), ModContent.ItemType<IceWasteland>() };
             int itemsToPlaceInLockedFrozenChestsChoice = 0;
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
             {
@@ -195,7 +236,7 @@ namespace HandHmod
                     }
                 }
             }
-            int[] itemsToPlaceInLockedJungleChests = { ModContent.ItemType<Items.Misc.Lore.Jungle>() };
+            int[] itemsToPlaceInLockedJungleChests = { ModContent.ItemType<Jungle>() };
             int itemsToPlaceInLockedJungleChestsChoice = 0;
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
             {
