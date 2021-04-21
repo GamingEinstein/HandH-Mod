@@ -27,6 +27,8 @@ namespace HandHmod.Items.Weapons.Range
             item.noMelee = true;
             item.ranged = true;
             item.damage = 354;
+            item.crit = 3;
+            item.knockBack = 10f;
 
             item.useAmmo = AmmoID.Arrow;
             item.shoot = 100;
