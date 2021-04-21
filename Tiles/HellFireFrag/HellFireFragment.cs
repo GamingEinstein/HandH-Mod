@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace HandHmod.Tiles.HellFireFrag
 {

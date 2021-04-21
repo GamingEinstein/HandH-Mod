@@ -1,8 +1,8 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Microsoft.Xna.Framework;
-using Terraria.Localization;
 
 namespace HandHmod.Tiles.HellFireFrag
 {
