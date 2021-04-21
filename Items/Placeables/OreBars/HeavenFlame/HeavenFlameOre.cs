@@ -1,5 +1,5 @@
-﻿using Terraria;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -22,10 +22,10 @@ namespace HandHmod.Items.Placeables.OreBars.HeavenFlame
             item.useTime = 10;
             item.useAnimation = 12;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            
+
             item.consumable = true;
             item.maxStack = 999;
-            
+
             item.createTile = TileType<Tiles.HeavenFlame.HeavenFlameOre>();
         }
     }
