@@ -32,7 +32,7 @@ namespace HandHmod.Generation
             };
             TexGen texGenerator = BaseWorldGenTex.GetTexGenerator(ModContent.GetTexture("HandHmod/Generation/Heavens"), colorToTile, ModContent.GetTexture("HandHmod/Generation/HeavensWalls"), colorToWall, ModContent.GetTexture("HandHmod/Generation/HeavensWater"));
             texGenerator.Generate(x - texGenerator.width / 2, y - texGenerator.height / 2, silent: true, sync: true);
-            WorldGen.PlaceChest(x - 6, y + 229, (ushort)ModContent.TileType<HeavenlyChest>(), false, 0);
+            WorldGen.PlaceChest(x - 6, y + 229, (ushort)ModContent.TileType<HeavenlyChest>(), false, 1);
         }
     }
 }
