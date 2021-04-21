@@ -4,19 +4,19 @@ using Terraria.ModLoader;
 
 namespace HandHmod.Items.Misc.Materials
 {
-    public class CursedSoulOfHell : ModItem
+    public class IIVoidEssenceII : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cursed Soul of Hell");
-            Tooltip.SetDefault("A soul from the depths of Hell");
+            DisplayName.SetDefault("II Void Essence II");
+            Tooltip.SetDefault("II the end... II");
         }
 
         public override void SetDefaults()
         {
-            item.width = 18;
-            item.height = 18;
-            item.value = Item.buyPrice(gold: 10);
+            item.width = 24;
+            item.height = 24;
+            item.value = Item.buyPrice(gold: 50);
             item.rare = ItemRarityID.Cyan;
             item.material = true;
             item.maxStack = 999;

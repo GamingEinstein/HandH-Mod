@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace HandHmod.Items.Misc.Materials
 {
-    public class CursedSoulOfHell : ModItem
+    public class BloodOfTheHellDemigod : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cursed Soul of Hell");
-            Tooltip.SetDefault("A soul from the depths of Hell");
+            DisplayName.SetDefault("Blood of the Hell Demigod");
+            Tooltip.SetDefault("The essence of the Demigod ruler of Hell");
         }
 
         public override void SetDefaults()
         {
-            item.width = 18;
-            item.height = 18;
+            item.width = 16;
+            item.height = 16;
             item.value = Item.buyPrice(gold: 10);
             item.rare = ItemRarityID.Cyan;
             item.material = true;

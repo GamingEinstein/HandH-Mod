@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace HandHmod.Items.Misc.Materials
 {
-    public class CursedSoulOfHell : ModItem
+    public class CursedCore : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cursed Soul of Hell");
-            Tooltip.SetDefault("A soul from the depths of Hell");
+            DisplayName.SetDefault("Cursed Core");
+            Tooltip.SetDefault("It is almost devoid of light");
         }
 
         public override void SetDefaults()
         {
-            item.width = 18;
-            item.height = 18;
+            item.width = 32;
+            item.height = 32;
             item.value = Item.buyPrice(gold: 10);
             item.rare = ItemRarityID.Cyan;
             item.material = true;
