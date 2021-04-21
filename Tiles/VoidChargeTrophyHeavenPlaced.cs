@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HandHmod.Items.Boss.VoidCharges;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +23,7 @@ namespace HandHmod.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Trophy");
             AddMapEntry(new Color(120, 85, 60), name);
-            drop = ModContent.ItemType<Items.Boss.VoidChargeTrophyHeaven>();
+            drop = ModContent.ItemType<VoidChargeTrophyHeaven>();
         }
     }
 }

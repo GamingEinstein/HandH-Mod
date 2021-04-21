@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
+using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using log4net;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.Utilities;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace HandHmod
 {
@@ -26,143 +22,147 @@ namespace HandHmod
         //  Author(s): Grox the Great                           //
         //------------------------------------------------------// 
 
-		public static string[] GetLoadedMods()
-		{
-			return ModLoader.Mods.Reverse().Select(m => m.Name).ToArray();
-		}	
+        public static string[] GetLoadedMods()
+        {
+            return ModLoader.Mods.Reverse().Select(m => m.Name).ToArray();
+        }
 
-		public static void LogBasic(string logText)
-		{
-			ILog logger = LogManager.GetLogger("Terraria");			
-			logger.Info(logText);			
-		}
+        public static void LogBasic(string logText)
+        {
+            ILog logger = LogManager.GetLogger("Terraria");
+            logger.Info(logText);
+        }
 
-		//public static void LogFancy(string logText)
-		//{
-		//	LogFancy("", logText, null);
-		//}		
-	
-		public static void LogFancy(string prefix, Exception e)
-		{
-			LogFancy(prefix, null, e);
-		}
+        //public static void LogFancy(string logText)
+        //{
+        //	LogFancy("", logText, null);
+        //}		
 
-		public static void LogFancy(string prefix, string logText, Exception e = null)
-		{
-			ILog logger = LogManager.GetLogger("Terraria");	
-			if(e != null)
-			{
-				logger.Info(">---------<");			
-				logger.Error(prefix + e.Message);
-				logger.Error(e.StackTrace);		
-				logger.Info(">---------<");				
-				//ErrorLogger.Log(prefix + e.Message); ErrorLogger.Log(e.StackTrace);	ErrorLogger.Log(">---------<");	
-			}else
-			{
-				logger.Info(">---------<");			
-				logger.Info(prefix + logText);	
-				logger.Info(">---------<");					
-				//ErrorLogger.Log(prefix + logText);
-			}		
-		}		
+        public static void LogFancy(string prefix, Exception e)
+        {
+            LogFancy(prefix, null, e);
+        }
 
-		public static void OpenChestUI(int i, int j)
-		{
-			Player player = Main.player[Main.myPlayer];
-			Tile tile = Main.tile[i, j];
-			Main.mouseRightRelease = false;
-			int left = i;
-			int top = j;
-			if(tile.frameX % 36 != 0) left--;
-			if(tile.frameY != 0) top--;
-			if(player.sign >= 0)
-			{
-				Main.PlaySound(11, -1, -1, 1);
-				player.sign = -1;
-				Main.editSign = false;
-				Main.npcChatText = "";
-			}
-			if(Main.editChest)
-			{
-				Main.PlaySound(12, -1, -1, 1);
-				Main.editChest = false;
-				Main.npcChatText = "";
-			}
-			if(player.editedChestName)
-			{
-				NetMessage.SendData(33, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
-				player.editedChestName = false;
-			}
-			if(Main.netMode == 1)
-			{
-				if(left == player.chestX && top == player.chestY && player.chest >= 0)
-				{
-					player.chest = -1;
-					Recipe.FindRecipes();
-					Main.PlaySound(11, -1, -1, 1);
-				}else
-				{
-					NetMessage.SendData(31, -1, -1, NetworkText.FromLiteral(""), left, (float)top, 0f, 0f, 0, 0, 0);
-					Main.stackSplit = 600;
-				}
-			}else
-			{
-				int chest = Chest.FindChest(left, top);
-				if(chest >= 0)
-				{
-					Main.stackSplit = 600;
-					if(chest == player.chest)
-					{
-						player.chest = -1;
-						Main.PlaySound(11, -1, -1, 1);
-					}else
-					{
-						player.chest = chest;
-						Main.playerInventory = true;
-						Main.recBigList = false;
-						player.chestX = left;
-						player.chestY = top;
-						Main.PlaySound(player.chest < 0 ? 10 : 12, -1, -1, 1);
-					}
-					Recipe.FindRecipes();
-				}
-			}			
-		}
+        public static void LogFancy(string prefix, string logText, Exception e = null)
+        {
+            ILog logger = LogManager.GetLogger("Terraria");
+            if (e != null)
+            {
+                logger.Info(">---------<");
+                logger.Error(prefix + e.Message);
+                logger.Error(e.StackTrace);
+                logger.Info(">---------<");
+                //ErrorLogger.Log(prefix + e.Message); ErrorLogger.Log(e.StackTrace);	ErrorLogger.Log(">---------<");	
+            }
+            else
+            {
+                logger.Info(">---------<");
+                logger.Info(prefix + logText);
+                logger.Info(">---------<");
+                //ErrorLogger.Log(prefix + logText);
+            }
+        }
 
-		public static void DisplayTime(double time = -1, Color? overrideColor = null, bool sync = false)
-		{
-			string text = "AM";
-			if(time <= -1) time = Main.time;
+        public static void OpenChestUI(int i, int j)
+        {
+            Player player = Main.player[Main.myPlayer];
+            Tile tile = Main.tile[i, j];
+            Main.mouseRightRelease = false;
+            int left = i;
+            int top = j;
+            if (tile.frameX % 36 != 0) left--;
+            if (tile.frameY != 0) top--;
+            if (player.sign >= 0)
+            {
+                Main.PlaySound(11, -1, -1, 1);
+                player.sign = -1;
+                Main.editSign = false;
+                Main.npcChatText = "";
+            }
+            if (Main.editChest)
+            {
+                Main.PlaySound(12, -1, -1, 1);
+                Main.editChest = false;
+                Main.npcChatText = "";
+            }
+            if (player.editedChestName)
+            {
+                NetMessage.SendData(33, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
+                player.editedChestName = false;
+            }
+            if (Main.netMode == 1)
+            {
+                if (left == player.chestX && top == player.chestY && player.chest >= 0)
+                {
+                    player.chest = -1;
+                    Recipe.FindRecipes();
+                    Main.PlaySound(11, -1, -1, 1);
+                }
+                else
+                {
+                    NetMessage.SendData(31, -1, -1, NetworkText.FromLiteral(""), left, (float)top, 0f, 0f, 0, 0, 0);
+                    Main.stackSplit = 600;
+                }
+            }
+            else
+            {
+                int chest = Chest.FindChest(left, top);
+                if (chest >= 0)
+                {
+                    Main.stackSplit = 600;
+                    if (chest == player.chest)
+                    {
+                        player.chest = -1;
+                        Main.PlaySound(11, -1, -1, 1);
+                    }
+                    else
+                    {
+                        player.chest = chest;
+                        Main.playerInventory = true;
+                        Main.recBigList = false;
+                        player.chestX = left;
+                        player.chestY = top;
+                        Main.PlaySound(player.chest < 0 ? 10 : 12, -1, -1, 1);
+                    }
+                    Recipe.FindRecipes();
+                }
+            }
+        }
 
-			if (!Main.dayTime){ time += 54000.0; }
-			time = time / 86400.0 * 24.0;
-			time = time - 7.5 - 12.0;
-			
-			if (time < 0.0) time += 24.0;
-			if (time >= 12.0) text = "PM";
-			
-			int intTime = (int)time;
-			double deltaTime = time - intTime;
-			deltaTime = ((int)(deltaTime * 60.0));
-			string text2 = string.Concat(deltaTime);
+        public static void DisplayTime(double time = -1, Color? overrideColor = null, bool sync = false)
+        {
+            string text = "AM";
+            if (time <= -1) time = Main.time;
 
-			if (deltaTime < 10.0) text2 = "0" + text2;
-			if (intTime > 12) intTime -= 12;
-			if (intTime == 0) intTime = 12;
-			var newText = string.Concat("Time: ", intTime, ":", text2, " ", text);
-			Chat(newText, (overrideColor != null ? (Color)overrideColor : new Color(255, 240, 20)), sync);
-		}
+            if (!Main.dayTime) { time += 54000.0; }
+            time = time / 86400.0 * 24.0;
+            time = time - 7.5 - 12.0;
+
+            if (time < 0.0) time += 24.0;
+            if (time >= 12.0) text = "PM";
+
+            int intTime = (int)time;
+            double deltaTime = time - intTime;
+            deltaTime = ((int)(deltaTime * 60.0));
+            string text2 = string.Concat(deltaTime);
+
+            if (deltaTime < 10.0) text2 = "0" + text2;
+            if (intTime > 12) intTime -= 12;
+            if (intTime == 0) intTime = 12;
+            var newText = string.Concat("Time: ", intTime, ":", text2, " ", text);
+            Chat(newText, (overrideColor != null ? (Color)overrideColor : new Color(255, 240, 20)), sync);
+        }
 
         public static int CheckForGore(Mod mod, string goreName, IDictionary<string, int> gores = null)
         {
-			if(mod == null) return -1; //only for mod gores!
-			if (mod.GetGoreSlot("Gores/" + goreName) > 0) return mod.GetGoreSlot("Gores/" + goreName);
-			if(gores == null && mod is GoreInfo) gores = ((GoreInfo)mod).GetGoreArray();
-			if(gores == null) gores = (IDictionary<string, int>)typeof(ModGore).GetField("gores", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-			foreach (string key in gores.Keys)
-			{
-				if (key.Contains(mod.Name) && key.Contains(goreName)) return ModGore.GetGoreSlot(key);
-			}
+            if (mod == null) return -1; //only for mod gores!
+            if (mod.GetGoreSlot("Gores/" + goreName) > 0) return mod.GetGoreSlot("Gores/" + goreName);
+            if (gores == null && mod is GoreInfo) gores = ((GoreInfo)mod).GetGoreArray();
+            if (gores == null) gores = (IDictionary<string, int>)typeof(ModGore).GetField("gores", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
+            foreach (string key in gores.Keys)
+            {
+                if (key.Contains(mod.Name) && key.Contains(goreName)) return ModGore.GetGoreSlot(key);
+            }
             return -1;
         }
 
@@ -178,18 +178,18 @@ namespace HandHmod
 
         public static void AddTooltips(Item item, string[] tooltips)
         {
-			AddTooltips(item.modItem, tooltips);
-        }	
-		
+            AddTooltips(item.modItem, tooltips);
+        }
+
         public static void AddTooltips(ModItem item, string[] tooltips)
         {
-			string supertip = "";
+            string supertip = "";
             for (int m = 0; m < tooltips.Length; m++)
-			{
-				supertip += (tooltips[m] + (m == tooltips.Length - 1 ? "" : "\n"));
-			}	
-			item.Tooltip.SetDefault(supertip);
-        }			
+            {
+                supertip += (tooltips[m] + (m == tooltips.Length - 1 ? "" : "\n"));
+            }
+            item.Tooltip.SetDefault(supertip);
+        }
 
         #region ByName calls
         public static NPC NPCByName(string n)
@@ -199,7 +199,8 @@ namespace HandHmod
                 string mName = n.Split(':')[0];
                 string n2 = n.Split(':')[1];
                 return ModLoader.GetMod(mName).GetNPC(n2).npc;
-            }else
+            }
+            else
             {
                 string[] modNames = GetLoadedMods();
                 foreach (string name in modNames)
@@ -219,7 +220,8 @@ namespace HandHmod
                 string mName = n.Split(':')[0];
                 string n2 = n.Split(':')[1];
                 return ModLoader.GetMod(mName).GetItem(n2).item;
-            }else
+            }
+            else
             {
                 string[] modNames = GetLoadedMods();
                 foreach (string name in modNames)
@@ -260,7 +262,8 @@ namespace HandHmod
                 string mName = n.Split(':')[0];
                 string n2 = n.Split(':')[1];
                 return ModLoader.GetMod(mName).GetTile(n2);
-            }else
+            }
+            else
             {
                 string[] modNames = GetLoadedMods();
                 foreach (string name in modNames)
@@ -310,107 +313,107 @@ namespace HandHmod
         private static FieldInfo soundField = null, soundInstanceField = null;
         public static void PlaySound(object soundType, int x, int y, object sound, bool stop = true, bool newInstance = true, float? overrideVolume = null, float? overridePitch = null)
         {
-			if (Main.netMode == 2 || Main.dedServ || Main.soundVolume == 0f) return;
+            if (Main.netMode == 2 || Main.dedServ || Main.soundVolume == 0f) return;
 
-			Rectangle screenRect = new Rectangle((int)(Main.screenPosition.X - (float)(Main.screenWidth * 2)), (int)(Main.screenPosition.Y - (float)(Main.screenHeight * 2)), Main.screenWidth * 5, Main.screenHeight * 5);
-			Rectangle locRect = new Rectangle(x, y, 1, 1);
-			bool usePan = locRect.Intersects(screenRect);
-			if ((x == -1 && y == -1) || usePan)
-			{
-				SoundEffect soundEffect = null;
-				float pitch = 0f;
-				int soundID = -1;
-				SoundEffect[] soundArray = null;
-				SoundEffectInstance[] soundInstanceArray = null;
-				int soundType2 = (soundType is int ? (int)soundType : 0);
-				if (soundType is SoundType)
-				{
-					switch ((SoundType)soundType)
-					{
-						case SoundType.Custom: soundType2 = -1; break;
-						case SoundType.Item: soundType2 = 2; break;
-						case SoundType.NPCHit: soundType2 = 3; break;
-						case SoundType.NPCKilled: soundType2 = 4; break;
-						default: soundType2 = 0; break;
-					}
-				}
-				switch (soundType2)
-				{
-					case -1:
-						soundID = SoundLoader.GetSoundSlot(SoundType.Custom, (string)sound);
-						if(soundField == null) soundField = typeof(SoundLoader).GetField("customSounds", BindingFlags.NonPublic | BindingFlags.Static);
-						if(soundInstanceField == null) soundInstanceField = typeof(SoundLoader).GetField("customSoundInstances", BindingFlags.NonPublic | BindingFlags.Static);
-						soundArray = (SoundEffect[])soundField.GetValue(null);   // SoundLoader.customSounds[soundID];
-						soundInstanceArray = (SoundEffectInstance[])soundInstanceField.GetValue(null);
-						break;
-					case 2:
-						if(sound is string){ soundID = SoundLoader.GetSoundSlot(SoundType.Item, (string)sound); }else{ soundID = (int)sound; }
-						soundArray = Main.soundItem;
-						soundInstanceArray = Main.soundInstanceItem;
-						pitch = (float)Main.rand.Next(-6, 7) * 0.01f;
-						break;
-					case 3:
-						if(sound is string){ soundID = SoundLoader.GetSoundSlot(SoundType.NPCHit, (string)sound); }else{ soundID = (int)sound; }
-						soundArray = Main.soundNPCHit;
-						soundInstanceArray = Main.soundInstanceNPCHit;
-						pitch = (float)Main.rand.Next(-10, 11) * 0.01f;
-						break;
-					case 4:
-						if(sound is string){ soundID = SoundLoader.GetSoundSlot(SoundType.NPCKilled, (string)sound); }else{ soundID = (int)sound; }
-						soundArray = Main.soundNPCKilled;
-						soundInstanceArray = Main.soundInstanceNPCKilled;
-						pitch = (float)Main.rand.Next(-10, 11) * 0.01f;
-						break;
-					default: return;
-				}
-				//TODO: FIX SOUND VOLUME/PAN
-				soundEffect = soundArray[soundID];
-				if (stop && soundID != -1 && soundInstanceArray[soundID] != null) { soundInstanceArray[soundID].Stop(); }
-				
-				float soundPan = 0f;
-				float soundVol = 1f;
+            Rectangle screenRect = new Rectangle((int)(Main.screenPosition.X - (float)(Main.screenWidth * 2)), (int)(Main.screenPosition.Y - (float)(Main.screenHeight * 2)), Main.screenWidth * 5, Main.screenHeight * 5);
+            Rectangle locRect = new Rectangle(x, y, 1, 1);
+            bool usePan = locRect.Intersects(screenRect);
+            if ((x == -1 && y == -1) || usePan)
+            {
+                SoundEffect soundEffect = null;
+                float pitch = 0f;
+                int soundID = -1;
+                SoundEffect[] soundArray = null;
+                SoundEffectInstance[] soundInstanceArray = null;
+                int soundType2 = (soundType is int ? (int)soundType : 0);
+                if (soundType is SoundType)
+                {
+                    switch ((SoundType)soundType)
+                    {
+                        case SoundType.Custom: soundType2 = -1; break;
+                        case SoundType.Item: soundType2 = 2; break;
+                        case SoundType.NPCHit: soundType2 = 3; break;
+                        case SoundType.NPCKilled: soundType2 = 4; break;
+                        default: soundType2 = 0; break;
+                    }
+                }
+                switch (soundType2)
+                {
+                    case -1:
+                        soundID = SoundLoader.GetSoundSlot(SoundType.Custom, (string)sound);
+                        if (soundField == null) soundField = typeof(SoundLoader).GetField("customSounds", BindingFlags.NonPublic | BindingFlags.Static);
+                        if (soundInstanceField == null) soundInstanceField = typeof(SoundLoader).GetField("customSoundInstances", BindingFlags.NonPublic | BindingFlags.Static);
+                        soundArray = (SoundEffect[])soundField.GetValue(null);   // SoundLoader.customSounds[soundID];
+                        soundInstanceArray = (SoundEffectInstance[])soundInstanceField.GetValue(null);
+                        break;
+                    case 2:
+                        if (sound is string) { soundID = SoundLoader.GetSoundSlot(SoundType.Item, (string)sound); } else { soundID = (int)sound; }
+                        soundArray = Main.soundItem;
+                        soundInstanceArray = Main.soundInstanceItem;
+                        pitch = (float)Main.rand.Next(-6, 7) * 0.01f;
+                        break;
+                    case 3:
+                        if (sound is string) { soundID = SoundLoader.GetSoundSlot(SoundType.NPCHit, (string)sound); } else { soundID = (int)sound; }
+                        soundArray = Main.soundNPCHit;
+                        soundInstanceArray = Main.soundInstanceNPCHit;
+                        pitch = (float)Main.rand.Next(-10, 11) * 0.01f;
+                        break;
+                    case 4:
+                        if (sound is string) { soundID = SoundLoader.GetSoundSlot(SoundType.NPCKilled, (string)sound); } else { soundID = (int)sound; }
+                        soundArray = Main.soundNPCKilled;
+                        soundInstanceArray = Main.soundInstanceNPCKilled;
+                        pitch = (float)Main.rand.Next(-10, 11) * 0.01f;
+                        break;
+                    default: return;
+                }
+                //TODO: FIX SOUND VOLUME/PAN
+                soundEffect = soundArray[soundID];
+                if (stop && soundID != -1 && soundInstanceArray[soundID] != null) { soundInstanceArray[soundID].Stop(); }
 
-				if(usePan)
-				{
-					Vector2 vector = new Vector2(Main.screenPosition.X + (float)Main.screenWidth * 0.5f, Main.screenPosition.Y + (float)Main.screenHeight * 0.5f);
-					float absX= Math.Abs((float)x - vector.X);
-					float absY = Math.Abs((float)y - vector.Y);
-					float absSQ = (float)Math.Sqrt((double)(absX * absX + absY * absY));		
-					soundPan = ((float)x - vector.X) / ((float)Main.screenWidth * 0.5f);
-					soundVol = 1f - absSQ / ((float)Main.screenWidth * 1.5f);
-				}
-	
-				SoundEffectInstance soundInstance = (newInstance ? soundEffect.CreateInstance() : (soundInstanceArray[soundID].State == SoundState.Playing ? soundInstanceArray[soundID] : soundEffect.CreateInstance()));
-				soundInstance.Volume = Math.Max(0f, Math.Min(1f, (overrideVolume != null ? (float)overrideVolume : soundVol) * Main.soundVolume));
-				soundInstance.Pitch = (overridePitch != null ? (float)overridePitch : pitch);
-				soundInstance.Pan = Math.Max(-1f, Math.Min(1f, soundPan));
-				Main.PlaySoundInstance(soundInstance);
-				soundInstanceArray[soundID] = soundInstance;
-				switch (soundType2)
-				{
-					case -1:
-						soundField.SetValue(null, soundArray);
-						soundInstanceField.SetValue(null, soundInstanceArray);
-						break;
-					case 2:
-						Main.soundItem = soundArray;
-						Main.soundInstanceItem = soundInstanceArray;
-						break;
-					case 3:
-						Main.soundNPCHit = soundArray;
-						Main.soundInstanceNPCHit = soundInstanceArray;
-						break;
-					case 4:
-						Main.soundNPCKilled = soundArray;
-						Main.soundInstanceNPCKilled = soundInstanceArray;
-						break;
+                float soundPan = 0f;
+                float soundVol = 1f;
 
-					default: return;
-				}
-			}
+                if (usePan)
+                {
+                    Vector2 vector = new Vector2(Main.screenPosition.X + (float)Main.screenWidth * 0.5f, Main.screenPosition.Y + (float)Main.screenHeight * 0.5f);
+                    float absX = Math.Abs((float)x - vector.X);
+                    float absY = Math.Abs((float)y - vector.Y);
+                    float absSQ = (float)Math.Sqrt((double)(absX * absX + absY * absY));
+                    soundPan = ((float)x - vector.X) / ((float)Main.screenWidth * 0.5f);
+                    soundVol = 1f - absSQ / ((float)Main.screenWidth * 1.5f);
+                }
+
+                SoundEffectInstance soundInstance = (newInstance ? soundEffect.CreateInstance() : (soundInstanceArray[soundID].State == SoundState.Playing ? soundInstanceArray[soundID] : soundEffect.CreateInstance()));
+                soundInstance.Volume = Math.Max(0f, Math.Min(1f, (overrideVolume != null ? (float)overrideVolume : soundVol) * Main.soundVolume));
+                soundInstance.Pitch = (overridePitch != null ? (float)overridePitch : pitch);
+                soundInstance.Pan = Math.Max(-1f, Math.Min(1f, soundPan));
+                Main.PlaySoundInstance(soundInstance);
+                soundInstanceArray[soundID] = soundInstance;
+                switch (soundType2)
+                {
+                    case -1:
+                        soundField.SetValue(null, soundArray);
+                        soundInstanceField.SetValue(null, soundInstanceArray);
+                        break;
+                    case 2:
+                        Main.soundItem = soundArray;
+                        Main.soundInstanceItem = soundInstanceArray;
+                        break;
+                    case 3:
+                        Main.soundNPCHit = soundArray;
+                        Main.soundInstanceNPCHit = soundInstanceArray;
+                        break;
+                    case 4:
+                        Main.soundNPCKilled = soundArray;
+                        Main.soundInstanceNPCKilled = soundInstanceArray;
+                        break;
+
+                    default: return;
+                }
+            }
             //OLD CODE
 
-			//Main.PlaySound(soundEffect, x, y, newInstance, null, Single.NaN, overrideVolume == null ? Single.NaN : (float)overrideVolume, pitch);
+            //Main.PlaySound(soundEffect, x, y, newInstance, null, Single.NaN, overrideVolume == null ? Single.NaN : (float)overrideVolume, pitch);
             /*if (soundType == 100) { soundType = 3; if (overridePitch == null) { overridePitch = 0f; } }
             if (Main.dedServ || Main.soundVolume <= 0f) { return; }
             Microsoft.Xna.Framework.Audio.SoundEffect sound = null;
@@ -494,62 +497,65 @@ namespace HandHmod
         public static int SecondsToTicks(int seconds) { return seconds * 60; }
 
         public static int TicksToMinutes(int ticks) { return ticks / 60 / 60; }
-        public static int MinutesToTicks(int minutes) { return minutes * 60 * 60; }	
-	
+        public static int MinutesToTicks(int minutes) { return minutes * 60 * 60; }
+
         /*
          * Adds a value to the given array at the specified index. If index is -1, it adds it to the end.
          */
         public static Color[] AddToArray(Color[] array, Color valueToAdd, int indexAt = -1)
         {
-			Array.Resize(ref array, (indexAt + 1 > array.Length + 1 ? (indexAt + 1) : (array.Length + 1)));
-			if(indexAt == -1)
-			{
-				array[array.Length - 1] = valueToAdd;
-			}else
-			{
-				List<Color> list = array.ToList<Color>();
-				list.Insert(indexAt, valueToAdd);
-				array = list.ToArray();
-			}
-			return array;
-		}	
+            Array.Resize(ref array, (indexAt + 1 > array.Length + 1 ? (indexAt + 1) : (array.Length + 1)));
+            if (indexAt == -1)
+            {
+                array[array.Length - 1] = valueToAdd;
+            }
+            else
+            {
+                List<Color> list = array.ToList<Color>();
+                list.Insert(indexAt, valueToAdd);
+                array = list.ToArray();
+            }
+            return array;
+        }
 
-		/*
+        /*
          * Adds a value to the given array at the specified index. If index is -1, it adds it to the end.
          */
         public static string[] AddToArray(string[] array, string valueToAdd, int indexAt = -1)
         {
-			Array.Resize(ref array, (indexAt + 1 > array.Length + 1 ? (indexAt + 1) : (array.Length + 1)));
-			if(indexAt == -1)
-			{
-				array[array.Length - 1] = valueToAdd;
-			}else
-			{
-				List<string> list = array.ToList<string>();
-				list.Insert(indexAt, valueToAdd);
-				array = list.ToArray();
-			}
-			return array;
-		}		
-		
-		/*
+            Array.Resize(ref array, (indexAt + 1 > array.Length + 1 ? (indexAt + 1) : (array.Length + 1)));
+            if (indexAt == -1)
+            {
+                array[array.Length - 1] = valueToAdd;
+            }
+            else
+            {
+                List<string> list = array.ToList<string>();
+                list.Insert(indexAt, valueToAdd);
+                array = list.ToArray();
+            }
+            return array;
+        }
+
+        /*
          * Adds a value to the given array at the specified index. If index is -1, it adds it to the end.
          */
         public static int[] AddToArray(int[] array, int valueToAdd, int indexAt = -1)
         {
-			Array.Resize(ref array, (indexAt + 1 > array.Length + 1 ? (indexAt + 1) : (array.Length + 1)));
-			if(indexAt == -1)
-			{
-				array[array.Length - 1] = valueToAdd;
-			}else
-			{
-				List<int> list = array.ToList<int>();
-				list.Insert(indexAt, valueToAdd);
-				array = list.ToArray();
-			}
-			return array;
-		}
-	
+            Array.Resize(ref array, (indexAt + 1 > array.Length + 1 ? (indexAt + 1) : (array.Length + 1)));
+            if (indexAt == -1)
+            {
+                array[array.Length - 1] = valueToAdd;
+            }
+            else
+            {
+                List<int> list = array.ToList<int>();
+                list.Insert(indexAt, valueToAdd);
+                array = list.ToArray();
+            }
+            return array;
+        }
+
         /*
          * Combines two int arrays.
          */
@@ -566,7 +572,7 @@ namespace HandHmod
          */
         public static int[] FillArray(int[] array, int value)
         {
-            for (int m = 0; m < array.Length; m++){ array[m] = value; }
+            for (int m = 0; m < array.Length; m++) { array[m] = value; }
             return array;
         }
 
@@ -578,7 +584,7 @@ namespace HandHmod
             for (int m = 0; m < array.Length; m++) { if (value == array[m]) { return true; } }
             return false;
         }
-        
+
         /*
          * Returns true if value is in the given int array.
          * 
@@ -589,7 +595,7 @@ namespace HandHmod
             for (int m = 0; m < array.Length; m++) { if (value == array[m]) { index = m; return true; } }
             return false;
         }
-		
+
         /*
          * Returns true if value is in the given float array.
          */
@@ -598,7 +604,7 @@ namespace HandHmod
             for (int m = 0; m < array.Length; m++) { if (value == array[m]) { return true; } }
             return false;
         }
-        
+
         /*
          * Returns true if value is in the given float array.
          * 
@@ -608,7 +614,7 @@ namespace HandHmod
         {
             for (int m = 0; m < array.Length; m++) { if (value == array[m]) { index = m; return true; } }
             return false;
-        }		
+        }
 
 
         /*
@@ -616,19 +622,19 @@ namespace HandHmod
          */
         public static Color ColorMonochrome(Color color)
         {
-			int average = color.R + color.G + color.B;
-			average /= 3;
+            int average = color.R + color.G + color.B;
+            average /= 3;
             return new Color(average, average, average, color.A);
-        }		
-		
+        }
+
         /*
          * Alters the coior by the amount of the alpha given.
          */
         public static Color ColorAlpha(Color color, int alpha)
         {
-			return color * (1f - ((float)alpha / 255f));
+            return color * (1f - ((float)alpha / 255f));
         }
-		
+
         /*
          * Alters the brightness of the color by the amount of the factor. If factor is negative, it darkens it. Else, it brightens it.
          */
@@ -640,16 +646,16 @@ namespace HandHmod
             return new Color(r, g, b, color.A);
         }
 
-		/*
+        /*
 		 * Alters the brightness of the color by the multiplier.
 		 */
-		public static Color ColorMult(Color color, float mult)
-		{
-			int r = Math.Max(0, Math.Min(255, (int)((float)color.R * mult)));
-			int g = Math.Max(0, Math.Min(255, (int)((float)color.G * mult)));
-			int b = Math.Max(0, Math.Min(255, (int)((float)color.B * mult)));
-			return new Color(r, g, b, color.A);
-		}
+        public static Color ColorMult(Color color, float mult)
+        {
+            int r = Math.Max(0, Math.Min(255, (int)((float)color.R * mult)));
+            int g = Math.Max(0, Math.Min(255, (int)((float)color.G * mult)));
+            int b = Math.Max(0, Math.Min(255, (int)((float)color.B * mult)));
+            return new Color(r, g, b, color.A);
+        }
 
         /*
          * Clamps the first color to be no lower then the values of the second color.
@@ -660,37 +666,37 @@ namespace HandHmod
             int g = color1.G;
             int b = color1.B;
             int a = color1.A;
-            if(r < color2.R){ r = color2.R; }
-            if(g < color2.G){ g = color2.G; }
-            if(b < color2.B){ b = color2.B; }
-            if(a < color2.A){ a = color2.A; }
+            if (r < color2.R) { r = color2.R; }
+            if (g < color2.G) { g = color2.G; }
+            if (b < color2.B) { b = color2.B; }
+            if (a < color2.A) { a = color2.A; }
             return new Color(r, g, b, a);
         }
 
-	    /*
+        /*
 		 * Clamps the first color to be no lower then the brightness of the second color.
 		 */
-		public static Color ColorBrightnessClamp(Color color1, Color color2)
-		{
-			float r = color1.R / 255f;
-			float g = color1.G / 255f;
-			float b = color1.B / 255f;
-			float r2 = color2.R / 255f;
-			float g2 = color2.G / 255f;
-			float b2 = color2.B / 255f;
-			float brightness = r2 > g2 ? r2 : g2 > b2 ? g2 : b2;
-			r *= brightness; g *= brightness; b *= brightness;
-			return new Color(r, g, b, (float)(color1.A / 255f));
-		}
+        public static Color ColorBrightnessClamp(Color color1, Color color2)
+        {
+            float r = color1.R / 255f;
+            float g = color1.G / 255f;
+            float b = color1.B / 255f;
+            float r2 = color2.R / 255f;
+            float g2 = color2.G / 255f;
+            float b2 = color2.B / 255f;
+            float brightness = r2 > g2 ? r2 : g2 > b2 ? g2 : b2;
+            r *= brightness; g *= brightness; b *= brightness;
+            return new Color(r, g, b, (float)(color1.A / 255f));
+        }
 
-		/*
+        /*
 		 * Tints the light color according to the buff color given. (prevents 'darkness' occuring if more than one is applied)
 		 */
-		public static Color BuffColorize(Color buffColor, Color lightColor)
-		{
-			Color color2 = BaseUtility.ColorBrightnessClamp(buffColor, lightColor);
-			return BaseUtility.ColorClamp(BaseUtility.Colorize(buffColor, lightColor), color2);
-		}
+        public static Color BuffColorize(Color buffColor, Color lightColor)
+        {
+            Color color2 = BaseUtility.ColorBrightnessClamp(buffColor, lightColor);
+            return BaseUtility.ColorClamp(BaseUtility.Colorize(buffColor, lightColor), color2);
+        }
 
         /*
          * Tints the light color according to the tint color given.
@@ -706,10 +712,10 @@ namespace HandHmod
             float ng = (byte)((float)newColor.G * g);
             float nb = (byte)((float)newColor.B * b);
             float na = (byte)((float)newColor.A * a);
-			newColor.R = (byte)(nr);
-			newColor.G = (byte)(ng);
-			newColor.B = (byte)(nb);
-			newColor.A = (byte)(na);
+            newColor.R = (byte)(nr);
+            newColor.G = (byte)(ng);
+            newColor.B = (byte)(nb);
+            newColor.A = (byte)(na);
             return newColor;
         }
 
@@ -725,15 +731,18 @@ namespace HandHmod
             if (percent <= 0.25f)
             {
                 return Color.Lerp(r, b, percent / 0.25f);
-            }else
+            }
+            else
             if (percent <= 0.5f)
             {
                 return Color.Lerp(b, g, (percent - 0.25f) / 0.25f);
-            }else
+            }
+            else
             if (percent <= 0.75f)
             {
                 return Color.Lerp(g, y, (percent - 0.5f) / 0.25f);
-            }else
+            }
+            else
             {
                 return Color.Lerp(y, r, (percent - 0.75f) / 0.25f);
             }
@@ -746,11 +755,12 @@ namespace HandHmod
          */
         public static Vector2 ClampToWorld(Vector2 position, bool tilePos = false)
         {
-            if(tilePos)
+            if (tilePos)
             {
                 position.X = (int)MathHelper.Clamp(position.X, 0, Main.maxTilesX);
                 position.Y = (int)MathHelper.Clamp(position.Y, 0, Main.maxTilesY);
-            }else
+            }
+            else
             {
                 position.X = (int)MathHelper.Clamp(position.X, 0, Main.maxTilesX * 16);
                 position.Y = (int)MathHelper.Clamp(position.Y, 0, Main.maxTilesY * 16);
@@ -785,41 +795,41 @@ namespace HandHmod
             return new Rectangle(x, y, width, height);
         }
 
-		/*
+        /*
 		 * Allows lerping between N float values.
 		 */
-		public static float MultiLerp(float percent, params float[] floats)
-		{
-			float per = 1f / ((float)floats.Length - 1);
-			float total = per;
-			int currentID = 0;
-			while ((percent / total) > 1f && (currentID < floats.Length - 2)) { total += per; currentID++; }
-			return MathHelper.Lerp(floats[currentID], floats[currentID + 1], (percent - (per * currentID)) / per);
-		}
-		
-		/*
+        public static float MultiLerp(float percent, params float[] floats)
+        {
+            float per = 1f / ((float)floats.Length - 1);
+            float total = per;
+            int currentID = 0;
+            while ((percent / total) > 1f && (currentID < floats.Length - 2)) { total += per; currentID++; }
+            return MathHelper.Lerp(floats[currentID], floats[currentID + 1], (percent - (per * currentID)) / per);
+        }
+
+        /*
 		 * Allows lerping between N vector values.
 		 */
-		public static Vector2 MultiLerpVector(float percent, params Vector2[] vectors)
-		{
-			float per = 1f / ((float)vectors.Length - 1);
-			float total = per;
-			int currentID = 0;
-			while ((percent / total) > 1f && (currentID < vectors.Length - 2)) { total += per; currentID++; }
-			return Vector2.Lerp(vectors[currentID], vectors[currentID + 1], (percent - (per * currentID)) / per);
-		}
+        public static Vector2 MultiLerpVector(float percent, params Vector2[] vectors)
+        {
+            float per = 1f / ((float)vectors.Length - 1);
+            float total = per;
+            int currentID = 0;
+            while ((percent / total) > 1f && (currentID < vectors.Length - 2)) { total += per; currentID++; }
+            return Vector2.Lerp(vectors[currentID], vectors[currentID + 1], (percent - (per * currentID)) / per);
+        }
 
-		/*
+        /*
 		 * Allows lerping between N color values.
 		 */
-		public static Color MultiLerpColor(float percent, params Color[] colors)
-		{
-			float per = 1f / ((float)colors.Length - 1);
-			float total = per;
-			int currentID = 0;
-			while ((percent / total) > 1f && (currentID < colors.Length - 2)) { total += per; currentID++; }
-			return Color.Lerp(colors[currentID], colors[currentID + 1], (percent - (per * currentID)) / per);
-		}			
+        public static Color MultiLerpColor(float percent, params Color[] colors)
+        {
+            float per = 1f / ((float)colors.Length - 1);
+            float total = per;
+            int currentID = 0;
+            while ((percent / total) > 1f && (currentID < colors.Length - 2)) { total += per; currentID++; }
+            return Color.Lerp(colors[currentID], colors[currentID + 1], (percent - (per * currentID)) / per);
+        }
 
         /*
          * Returns a rotation from startPos pointing to endPos.
@@ -836,7 +846,8 @@ namespace HandHmod
         public static Vector2 FlipVector(Vector2 origin, Vector2 point, bool flipX = true, bool flipY = true)
         {
             float dX = point.X - origin.X; float dY = point.Y - origin.Y;
-            if (flipX) { dX *= -1; } if (flipY) { dY *= -1; }
+            if (flipX) { dX *= -1; }
+            if (flipY) { dY *= -1; }
             return origin + new Vector2(dX, dY);
         }
 
@@ -872,7 +883,8 @@ namespace HandHmod
                 float newPosX = pos.X + (Main.rand.Next(2) == 0 ? -(minDistance + rand.Next(distance)) : (minDistance + rand.Next(distance)));
                 float newPosY = pos.Y + (Main.rand.Next(2) == 0 ? -(minDistance + rand.Next(distance)) : (minDistance + rand.Next(distance)));
                 return new Vector2(newPosX, newPosY);
-            }else
+            }
+            else
             {
                 return RotateVector(pos, pos + new Vector2(minDistance + rand.Next(distance)), MathHelper.Lerp(0, (float)(Math.PI * 2f), (float)rand.NextDouble()));
             }
@@ -891,15 +903,17 @@ namespace HandHmod
          */
         public static void Chat(string s, byte colorR = (byte)255, byte colorG = (byte)255, byte colorB = (byte)255, bool sync = true)
         {
-            if (Main.netMode == 0) { Main.NewText(s, colorR, colorG, colorB); }else
-			if (Main.netMode == 1) { Main.NewText(s, colorR, colorG, colorB); }else //if(sync){ NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(s), new Color(colorR, colorG, colorB), Main.myPlayer); } }else
+            if (Main.netMode == 0) { Main.NewText(s, colorR, colorG, colorB); }
+            else
+            if (Main.netMode == 1) { Main.NewText(s, colorR, colorG, colorB); }
+            else //if(sync){ NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(s), new Color(colorR, colorG, colorB), Main.myPlayer); } }else
             if (sync && Main.netMode == 2) { NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(s), new Color(colorR, colorG, colorB), -1); }
         }
 
         public static Vector2[] ChainVector2(Vector2 start, Vector2 end, float jump = 0f)
         {
-			List<Vector2> points = new List<Vector2>();
-            if(jump <= 0f){ jump = 16f; }
+            List<Vector2> points = new List<Vector2>();
+            if (jump <= 0f) { jump = 16f; }
             Vector2 dir = end - start;
             dir.Normalize();
             float length = Vector2.Distance(start, end);
@@ -907,15 +921,15 @@ namespace HandHmod
             while (way < length)
             {
                 points.Add(start + dir * way);
-				way += jump;
+                way += jump;
             }
-			return points.ToArray();
-        }	
+            return points.ToArray();
+        }
 
         public static Point[] ChainPoint(Point start, Point end, float jump = 0f)
         {
-			List<Point> points = new List<Point>();
-            if(jump <= 0f){ jump = 16f; }
+            List<Point> points = new List<Point>();
+            if (jump <= 0f) { jump = 16f; }
             Vector2 dir = end.ToVector2() - start.ToVector2();
             dir.Normalize();
             float length = Vector2.Distance(start.ToVector2(), end.ToVector2());
@@ -923,11 +937,11 @@ namespace HandHmod
             while (way < length)
             {
                 Vector2 vec = (start.ToVector2() + dir * way);
-				Point p = new Point((int)vec.X, (int)vec.Y);
-				points.Add(p);
-				way += jump;
+                Point p = new Point((int)vec.X, (int)vec.Y);
+                points.Add(p);
+                way += jump;
             }
-			return points.ToArray();
-        }		
+            return points.ToArray();
+        }
     }
 }

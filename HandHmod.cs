@@ -11,16 +11,19 @@ using HandHmod.Items.Weapons.Melee;
 using HandHmod.Items.Weapons.Range;
 using HandHmod.Items.Weapons.Summon;
 using HandHmod.NPCs.Arcani;
-using HandHmod.NPCs.Boss.DevourerOfHellfire;
-using HandHmod.NPCs.Boss.LakeScourge;
-using HandHmod.NPCs.Boss.MightOfTheUnderworld;
-using HandHmod.NPCs.Boss.NeoArsenal;
-using HandHmod.NPCs.Boss.VoidCharge;
+using HandHmod.NPCs.DevourerOfHellfire;
+using HandHmod.NPCs.LakeScourge;
+using HandHmod.NPCs.MightOfTheUnderworld;
+using HandHmod.NPCs.NeoArsenal;
+using HandHmod.NPCs.VoidCharge;
 using HandHmod.NPCs.Devitrius;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using HandHmod.Items.Boss.HeavenHell;
+using HandHmod.Items.Boss.NeoArsenal;
+using HandHmod.Items.Boss.VoidCharges;
 
 namespace HandHmod
 {
@@ -117,10 +120,16 @@ namespace HandHmod
             {
                 return;
             }
+            // Player localPlayer = Main.LocalPlayer;
             // Make sure your logic here goes from lowest priority to highest so your intended priority is maintained.
             if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven)
             {
                 music = GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiome");
+                priority = MusicPriority.BiomeHigh;
+            }
+            if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven && Main.LocalPlayer.position.Y / 16 > Main.worldSurface)
+            {
+                music = GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiomeUnderground");
                 priority = MusicPriority.BiomeHigh;
             }
         }

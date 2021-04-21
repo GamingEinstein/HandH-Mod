@@ -1,6 +1,7 @@
 ﻿using HandHmod.Generation;
 using HandHmod.Items.Misc.Lore;
 using HandHmod.Items.Weapons.Melee;
+using HandHmod.Tiles;
 using HandHmod.Tiles.HeavenFlame;
 using HandHmod.Tiles.HeavenTiles;
 using HandHmod.Tiles.HellFireFrag;
