@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System;
 using HandHmod.Projectiles.Bosses;
 using HandHmod.Items;
-using HandHmod.Items.Boss;
+using HandHmod.Items.Boss.MightOfTheUnderworld;
 using HandHmod.Items.Weapons.Summon;
 using HandHmod.Items.Weapons.Melee;
 using HandHmod.Items.Placeables.OreBars.HeavenFlame;

@@ -62,7 +62,7 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 			}
 			Player p = Main.player[target];
 			
-			if(npc.localAI[0] == 0f && Main.netMode != 1)
+			if(npc.localAI[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				coolDown = 300;
 				portCoolDown = 0;
@@ -250,13 +250,13 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 			double fireAngle2 = (double)(((npc.ai[1] * degree) + 90) * (float) (Math.PI / 180));
 			double fireAngle3 = (double)(((npc.ai[1] * degree) + 180) * (float) (Math.PI / 180));
 			double fireAngle4 = (double)(((npc.ai[1] * degree) + 270) * (float) (Math.PI / 180));
-			if(Main.netMode != 1)
+			if(Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(fireAngle1) * 12f, (float)Math.Sin(fireAngle1) * 15f, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 3f, Main.myPlayer);
 				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(fireAngle2) * 12f, (float)Math.Sin(fireAngle2) * 15f, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 3f, Main.myPlayer);
 				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(fireAngle3) * 12f, (float)Math.Sin(fireAngle3) * 15f, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 3f, Main.myPlayer);
 				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(fireAngle4) * 12f, (float)Math.Sin(fireAngle4) * 15f, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 3f, Main.myPlayer);
-				Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 34);
+				Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 34);
 			}
 			if(mode == 0)
 			{
@@ -322,7 +322,7 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 				double fireAngle7 = (double)(((npc.ai[1] * degree) + 270) * (float) (Math.PI / 180));
 				double fireAngle8 = (double)(((npc.ai[1] * degree) + 315) * (float) (Math.PI / 180));
 				double fireAngle9 = (double)(((npc.ai[1] * degree) + 360) * (float) (Math.PI / 180));
-				if(npc.ai[1] % 10 == 0 && Main.netMode != 1)
+				if(npc.ai[1] % 10 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
 				{
 					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(fireAngle1) * 12f, (float)Math.Sin(fireAngle1) * 15f, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 3f, Main.myPlayer);
 					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(fireAngle2) * 12f, (float)Math.Sin(fireAngle2) * 15f, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 3f, Main.myPlayer);
@@ -351,10 +351,10 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 			float speed = 15f / distance;
 			shootToX *= speed; 
 			shootToY *= speed; 
-			if(Main.netMode != 1)
+			if(Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				Projectile.NewProjectile(npc.Center.X, npc.Center.Y, shootToX, shootToY, mod.ProjectileType("LakeSphere"), 20, 3f, Main.myPlayer);
-				Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 12);
+				Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 12);
 			}
 		}
 		private void hellSwarmMissiles(Player p)
@@ -380,7 +380,7 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 				shootToX *= speed; 
 				shootToY *= speed; 
 				Projectile.NewProjectile(npc.Center.X + fOne, npc.Center.Y + fTwo, shootToX, shootToY, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 6f, Main.myPlayer, p.whoAmI, 0f);
-				Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 11);
+				Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 11);
 			}
 			
 			npc.ai[1] += 1f;
@@ -419,7 +419,7 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 				shootToY *= speed; 
 				int proj = Projectile.NewProjectile(npc.Center.X + fOne, npc.Center.Y + fTwo, shootToX, shootToY, mod.ProjectileType("LakeSphere"), 20, 6f, Main.myPlayer, p.whoAmI, 0f);
 				Main.projectile[proj].timeLeft = 90;
-				Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 11);
+				Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 11);
 			}
 			if(npc.ai[1] % 120 == 0)
 			{
@@ -444,7 +444,7 @@ namespace HandHmod.NPCs.Boss.VoidCharge
 					float speedX = (float)Math.Cos(rad) * 10f;
 					int proj1 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, speedX, speedY, mod.ProjectileType("MightOfTheUnderworldProjectile"), 20, 0f, Main.myPlayer, 0f, 0f);
 					Main.projectile[proj1].timeLeft = 90;
-					Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 11);
+					Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 11);
 				}
 			}
 			if(p.position.Y < npc.position.Y)

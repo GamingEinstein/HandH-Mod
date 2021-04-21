@@ -1,6 +1,6 @@
 ﻿using HandHmod.Items.Misc.Materials;
 using HandHmod.Items.Placeables.OreBars.HeavenFlame;
-using HandHmod.Items.Boss;
+using HandHmod.Items.Boss.LakeScourge;
 using HandHmod.Projectiles.Bosses;
 using HandHmod.Items.Weapons.Melee;
 using HandHmod.Items.Weapons.Magic;
@@ -20,10 +20,7 @@ namespace HandHmod.NPCs.Boss.LakeScourge
 
 		public override bool Autoload(ref string name)
 		{
-			for (int k = 1; k <= 4; k++)
-			{
-				mod.AddBossHeadTexture(LakeScourgeHead + k);
-			}
+			mod.AddBossHeadTexture(LakeScourgeHead);
 			return base.Autoload(ref name);
 		}
 

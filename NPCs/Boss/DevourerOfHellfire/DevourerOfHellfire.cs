@@ -1,5 +1,5 @@
 ﻿using HandHmod.Items;
-using HandHmod.Items.Boss;
+using HandHmod.Items.Boss.DevourerOfHellfire;
 using HandHmod.Items.Misc.Materials;
 using HandHmod.Items.Placeables.OreBars.HeavenFlame;
 using HandHmod.Items.Placeables.OreBars.HellFireFrag;

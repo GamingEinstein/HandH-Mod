@@ -33,14 +33,14 @@ namespace HandHmod.NPCs.Boss.NeoArsenal
 			npc.aiStyle = 23;
 			aiType = NPCID.EnchantedSword;
 			animationType = NPCID.EnchantedSword;
-			bossBag = ModContent.ItemType<Items.Boss.DevourerOfHellfireTreasureBag>();
+			//bossBag = ModContent.ItemType<DevourerOfHellfireTreasureBag>();
 			music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
 		}
 		public override void NPCLoot()
 		{
 			if (Main.rand.NextBool(10))
 			{
-				Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Boss.DevourerOfHellfireTrophy>());
+				//Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Boss.DevourerOfHellfireTrophy>());
 			}
 			if (Main.expertMode)
 			{
