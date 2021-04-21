@@ -1,8 +1,7 @@
-﻿using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
-using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace HandHmod.Items.Weapons.Range
 {
