@@ -1,6 +1,6 @@
 The signal rings from heaven and hell. The above and below, once great equals, reduced to shadows of themselves. Heaven's wrath, and Hell's fire continue to ravage this land. There's only one hero who can quell these forces... You...
 
-Adds in 120+ items, 6 new bosses, and more
+Adds in 120+ items, 7 new bosses, and a new biome!
 
 Patch notes can be found on the Heaven & Hellfire discord from now on
 
@@ -12,6 +12,8 @@ Sprite artists: Project Elements, Pop The Bouncyball, Ian The Stylist, Lebyatpuy
 
 Programmers: Project Elements, GamingEinstein
 
+contributors: Trickster, Slayer
+
 Testers: greenpiggamer
 
 Music sources: 
@@ -22,7 +24,7 @@ DM Dokuro - Last Battle
 
 DM Dokuro - Descent
 
-Peritune - Havoc
+Peritune - BattleField3
 
 Project Elements - Aquatic Manifestation
 

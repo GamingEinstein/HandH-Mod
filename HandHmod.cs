@@ -1,8 +1,11 @@
 using HandHmod.Items.Accessories;
-using HandHmod.Items.Boss;
 using HandHmod.Items.Boss.DevourerOfHellfire;
+using HandHmod.Items.Boss.HeavenHell;
 using HandHmod.Items.Boss.LakeScourge;
 using HandHmod.Items.Boss.MightOfTheUnderworld;
+using HandHmod.Items.Boss.Neo;
+using HandHmod.Items.Boss.NeoArsenal;
+using HandHmod.Items.Boss.VoidCharges;
 using HandHmod.Items.Misc.Materials;
 using HandHmod.Items.Placeables.OreBars.HeavenFlame;
 using HandHmod.Items.Placeables.OreBars.HellFireFrag;
@@ -11,19 +14,17 @@ using HandHmod.Items.Weapons.Melee;
 using HandHmod.Items.Weapons.Range;
 using HandHmod.Items.Weapons.Summon;
 using HandHmod.NPCs.Arcani;
+using HandHmod.NPCs.Devitrius;
 using HandHmod.NPCs.DevourerOfHellfire;
 using HandHmod.NPCs.LakeScourge;
 using HandHmod.NPCs.MightOfTheUnderworld;
 using HandHmod.NPCs.NeoArsenal;
+using HandHmod.NPCs.NeoTheLesser;
 using HandHmod.NPCs.VoidCharge;
-using HandHmod.NPCs.Devitrius;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using HandHmod.Items.Boss.HeavenHell;
-using HandHmod.Items.Boss.NeoArsenal;
-using HandHmod.Items.Boss.VoidCharges;
 
 namespace HandHmod
 {
@@ -31,10 +32,6 @@ namespace HandHmod
     {
         public bool MightOfTheMinion { get; internal set; }
 
-        public override void Load()
-        {
-
-        }
         public override void PostSetupContent()
         {
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
@@ -48,7 +45,7 @@ namespace HandHmod
                     "Neo's Arsenal",
                     (Func<bool>)(() => HandHmodWorld.downedNeoArsenal),
                     ModContent.ItemType<NeoBlood>(),
-                    null,
+                    new List<int> { ModContent.ItemType<NeoArsenalTrophy>() },
                     new List<int> { ModContent.ItemType<NeoSickle>(), ModContent.ItemType<NeoBlade>(), ModContent.ItemType<NeoSpearWeapon>(), ModContent.ItemType<HeavenlySoul>(), ModContent.ItemType<CursedSoulOfHell>(), ModContent.ItemType<NeoSpell>() },
                     "$Use [i: " + ModContent.ItemType<NeoBlood>() + "] in the heaven's fragment biome"
                     );
@@ -63,6 +60,18 @@ namespace HandHmod
                     new List<int> { ModContent.ItemType<LakeScourgeTrophy>() },
                     new List<int> { ModContent.ItemType<HeavenFlameBar>(), ModContent.ItemType<LakeSpiritFragment>(), ModContent.ItemType<FlamingOceanicStone>(), ModContent.ItemType<BloodOfTheScourge>(), ModContent.ItemType<CoreOfTheScourge>(), ModContent.ItemType<ScourgeTooth>(), ModContent.ItemType<RodOfTheScourge>() },
                     "$Use [i: " + ModContent.ItemType<JewelOfTheScourge>() + "] at the ocean"
+                    );
+                bossChecklist.Call(
+                    "AddBoss",
+                    9.5f,
+                    new List<int> { ModContent.NPCType<Neo>() },
+                    this, // Mod
+                    "Neo The Lesser",
+                    (Func<bool>)(() => HandHmodWorld.downedNeo),
+                    ModContent.ItemType<NeoSoul>(),
+                    new List<int> { ModContent.ItemType<NeoTrophy>() },
+                    new List<int> { ModContent.ItemType<HeavenFlameBar>(), ModContent.ItemType<NeoDarkCreationStaff>(), ModContent.ItemType<NeoBlade>(), ModContent.ItemType<NeoSickle>(), ModContent.ItemType<NeoSpearWeapon>(), },
+                    "$Use [i: " + ModContent.ItemType<NeoSoul>() + "]"
                     );
                 bossChecklist.Call(
                     "AddBoss",
@@ -96,7 +105,7 @@ namespace HandHmod
                     "The Void Charges",
                     (Func<bool>)(() => HandHmodWorld.downedVoidCharge),
                     ModContent.ItemType<VoidLight>(),
-                    null,
+                    new List<int> { ModContent.ItemType<VoidChargeTrophyHeaven>() }, ModContent.ItemType<VoidChargeTrophyHell>(),
                     new List<int> { ModContent.ItemType<IIVoidEssenceII>() },
                     "$Use [i: " + ModContent.ItemType<VoidLight>() + "]"
                     );
@@ -108,8 +117,8 @@ namespace HandHmod
                     "Devitrius and Arcani",
                     (Func<bool>)(() => HandHmodWorld.downedDemigod),
                     ModContent.ItemType<ArtifactOfHeavenAndHell>(),
-                    null,
-                    new List<int> { ModContent.ItemType<CursedCore>(), ModContent.ItemType<BloodOfTheHellDemigod>(), ModContent.ItemType<BloodOfTheHeavenDemigod>() },
+                    new List<int> { ModContent.ItemType<ArcaniTrophy>() }, ModContent.ItemType<DevitriusTrophy>(),
+                    new List<int> { ModContent.ItemType<CursedCore>(), ModContent.ItemType<BloodOfTheHellDemigod>(), ModContent.ItemType<BloodOfTheHeavenDemigod>(), ModContent.ItemType<ArcaStaff>(), ModContent.ItemType<DeviStaff>(), },
                     "$Use [i: " + ModContent.ItemType<ArtifactOfHeavenAndHell>() + "]"
                     );
             }
@@ -120,7 +129,6 @@ namespace HandHmod
             {
                 return;
             }
-            // Player localPlayer = Main.LocalPlayer;
             // Make sure your logic here goes from lowest priority to highest so your intended priority is maintained.
             if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven)
             {
@@ -129,7 +137,7 @@ namespace HandHmod
             }
             if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven && Main.LocalPlayer.position.Y / 16 > Main.worldSurface)
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiomeUnderground");
+                music = GetSoundSlot(SoundType.Music, "Sound/Music.HeavenBiomeUnderground");
                 priority = MusicPriority.BiomeHigh;
             }
         }

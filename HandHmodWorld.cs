@@ -1,7 +1,5 @@
 ﻿using HandHmod.Generation;
-using HandHmod.Items.Misc.Lore;
 using HandHmod.Items.Weapons.Melee;
-using HandHmod.Tiles;
 using HandHmod.Tiles.HeavenFlame;
 using HandHmod.Tiles.HeavenTiles;
 using HandHmod.Tiles.HellFireFrag;
@@ -25,6 +23,7 @@ namespace HandHmod
         public static bool downedNeoArsenal;
         public static bool downedVoidCharge;
         public static bool downedDemigod;
+        public static bool downedNeo;
 
         public override void Initialize()
         {
@@ -34,6 +33,7 @@ namespace HandHmod
             downedDevourerOfHellfire = false;
             downedVoidCharge = false;
             downedDemigod = false;
+            downedNeo = false;
         }
         public override TagCompound Save()
         {
@@ -45,6 +45,10 @@ namespace HandHmod
             if (downedLakeScourge)
             {
                 downed.Add("LakeScourge");
+            }
+            if (downedNeo)
+            {
+                downed.Add("Neo");
             }
             if (downedMightOfTheUnderworld)
             {
@@ -72,6 +76,7 @@ namespace HandHmod
             var downed = tag.GetList<string>("downed");
             downedNeoArsenal = downed.Contains("NeoArsenal");
             downedLakeScourge = downed.Contains("LakeScourge");
+            downedLakeScourge = downed.Contains("Neo");
             downedMightOfTheUnderworld = downed.Contains("MightOfTheUnderworld");
             downedDevourerOfHellfire = downed.Contains("DevourerOfHellfire");
             downedVoidCharge = downed.Contains("VoidCharge");
@@ -86,10 +91,11 @@ namespace HandHmod
                 BitsByte flags = reader.ReadByte();
                 downedNeoArsenal = flags[0];
                 downedLakeScourge = flags[1];
-                downedMightOfTheUnderworld = flags[2];
-                downedDevourerOfHellfire = flags[3];
-                downedVoidCharge = flags[4];
-                downedDemigod = flags[5];
+                downedLakeScourge = flags[2];
+                downedMightOfTheUnderworld = flags[3];
+                downedDevourerOfHellfire = flags[4];
+                downedVoidCharge = flags[5];
+                downedDemigod = flags[6];
 
             }
             else
@@ -103,10 +109,11 @@ namespace HandHmod
             var flags = new BitsByte();
             flags[0] = downedNeoArsenal;
             flags[1] = downedLakeScourge;
-            flags[2] = downedMightOfTheUnderworld;
-            flags[3] = downedDevourerOfHellfire;
-            flags[4] = downedVoidCharge;
-            flags[5] = downedDemigod;
+            flags[2] = downedNeo;
+            flags[3] = downedMightOfTheUnderworld;
+            flags[4] = downedDevourerOfHellfire;
+            flags[5] = downedVoidCharge;
+            flags[6] = downedDemigod;
             writer.Write(flags);
         }
         public override void NetReceive(BinaryReader reader)
@@ -114,10 +121,11 @@ namespace HandHmod
             BitsByte flags = reader.ReadByte();
             downedNeoArsenal = flags[0];
             downedLakeScourge = flags[1];
-            downedMightOfTheUnderworld = flags[2];
-            downedDevourerOfHellfire = flags[3];
-            downedVoidCharge = flags[4];
-            downedDemigod = flags[5];
+            downedLakeScourge = flags[2];
+            downedMightOfTheUnderworld = flags[3];
+            downedDevourerOfHellfire = flags[4];
+            downedVoidCharge = flags[5];
+            downedDemigod = flags[6];
         }
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
@@ -217,9 +225,10 @@ namespace HandHmod
             }
             HeavensClear.Generate(x, y);
         }
+
         public override void PostWorldGen()
         {
-            int[] itemsToPlaceInLockedFrozenChests = { ModContent.ItemType<HeavenAnnihilator>(), ModContent.ItemType<IceWasteland>() };
+            int[] itemsToPlaceInLockedFrozenChests = { ModContent.ItemType<HeavenAnnihilator>(), ModContent.ItemType<Items.Misc.Lore.IceWasteland>() };
             int itemsToPlaceInLockedFrozenChestsChoice = 0;
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
             {
@@ -239,7 +248,7 @@ namespace HandHmod
                     }
                 }
             }
-            int[] itemsToPlaceInLockedJungleChests = { ModContent.ItemType<Jungle>() };
+            int[] itemsToPlaceInLockedJungleChests = { ModContent.ItemType<Items.Misc.Lore.Jungle>() };
             int itemsToPlaceInLockedJungleChestsChoice = 0;
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
             {

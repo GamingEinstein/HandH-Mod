@@ -12,38 +12,38 @@ namespace HandHmod
     {
         public bool MightOfTheMinion;
 
-        public const int maxVoidHearts = 10;
-        public int voidHearts;
+        public const int maxVoidHeart = 10;
         public const int maxMeshheart = 10;
-        public int meshheart;
+        public int VoidHeart;
+        public int Meshheart;
 
         public bool ZoneHeaven;
 
         public override void ResetEffects()
         {
             MightOfTheMinion = false;
-            player.statLifeMax2 += voidHearts * 10;
-            player.statLifeMax2 += meshheart * 30;
+            player.statLifeMax2 += VoidHeart * 10;
+            player.statLifeMax2 += Meshheart * 30;
         }
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = mod.GetPacket();
             packet.Write((byte)player.whoAmI);
-            packet.Write(voidHearts);
-            packet.Write(meshheart);
+            packet.Write(VoidHeart);
+            packet.Write(Meshheart);
             packet.Send(toWho, fromWho);
         }
         public override TagCompound Save()
         {
             return new TagCompound {
-                {"voidHearts", voidHearts},
-                {"meshheart", meshheart},
+                {"VoidHeart", VoidHeart},
+                {"Meshheart", Meshheart},
             };
         }
         public override void Load(TagCompound tag)
         {
-            voidHearts = tag.GetInt("voidHeart");
-            meshheart = tag.GetInt("meshheart");
+            VoidHeart = tag.GetInt("VoidHeart");
+            Meshheart = tag.GetInt("Meshheart");
         }
         public override void UpdateBiomes()
         {
