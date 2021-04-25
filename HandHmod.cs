@@ -137,7 +137,7 @@ namespace HandHmod
             }
             if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven && Main.LocalPlayer.position.Y / 16 > Main.worldSurface)
             {
-                music = GetSoundSlot(SoundType.Music, "Sound/Music.HeavenBiomeUnderground");
+                music = GetSoundSlot(SoundType.Music, "Sound/Music/HeavenBiomeUnderground");
                 priority = MusicPriority.BiomeHigh;
             }
         }
