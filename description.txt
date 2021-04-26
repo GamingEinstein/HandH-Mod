@@ -2,36 +2,26 @@ The signal rings from heaven and hell. The above and below, once great equals, r
 
 Adds in 120+ items, 7 new bosses, and a new biome!
 
-Patch notes can be found on the Heaven & Hellfire discord from now on
+If you want to hear the music, then you'll need to download the Heaven & Hellfire Music mod
 
-Discord : https://discord.gg/3x3GyD3qye
+Patch notes can be found on the Heaven & Hellfire discord from now on: https://discord.gg/3x3GyD3qye
 
 Mod creator: Project Elements
-
-Sprite artists: Project Elements, Pop The Bouncyball, Ian The Stylist, Lebyatpuya, Tobias, Antho24
-
+Spriters: Project Elements, Pop The Bouncyball, Ian The Stylist, Lebyatpuya, Tobias, Antho24
 Programmers: Project Elements, GamingEinstein
-
-contributors: Trickster, Slayer
-
+Contributors: Trickster, Slayer
 Testers: greenpiggamer
 
 Music sources: 
 
 DM Dokuro - Running hell 
-
 DM Dokuro - Last Battle
-
 DM Dokuro - Descent
-
 Peritune - BattleField3
-
 Project Elements - Aquatic Manifestation
-
 Project Elements - Glimmer in the Bliss
-
 Project Elements - Ancient Onslaught
 
-Heaven & Hellfire alpha 0.0.1.6
+Heaven & Hellfire alpha 0.0.1.7
 
 More content to be added very very soon
