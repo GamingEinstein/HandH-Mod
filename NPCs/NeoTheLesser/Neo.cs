@@ -42,7 +42,7 @@ namespace HandHmod.NPCs.NeoTheLesser
         {
             npc.aiStyle = -1;
             npc.lifeMax = 50000;
-            npc.damage = 150;
+            npc.damage = 80;
             npc.defense = 60;
             npc.knockBackResist = 0f;
             npc.width = 86;
@@ -55,11 +55,22 @@ namespace HandHmod.NPCs.NeoTheLesser
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath7;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Neo");
             bossBag = ModContent.ItemType<NeoTheLesserTreasureBag>();
             if (HandHmodWorld.downedMightOfTheUnderworld)
+            {
                 npc.lifeMax = (int)(npc.lifeMax * 10f);
-            npc.damage = (int)(npc.damage * 2f);
+                npc.damage = (int)(npc.damage * 2f);
+            }
+
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Neo");
+            }
+            else
+            {
+                music = MusicID.Boss4;
+            }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

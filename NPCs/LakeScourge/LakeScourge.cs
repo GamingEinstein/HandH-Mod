@@ -71,11 +71,22 @@ namespace HandHmod.NPCs.LakeScourge
             npc.noTileCollide = true;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath7;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/LakeScourge");
             bossBag = ModContent.ItemType<LakeScourgeTreasureBag>();
             if (HandHmodWorld.downedMightOfTheUnderworld)
+            {
                 npc.lifeMax = (int)(npc.lifeMax * 70f);
-            npc.damage = (int)(npc.damage * 100f);
+                npc.damage = (int)(npc.damage * 100f);
+            }
+
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/LakeScourge");
+            }
+            else
+            {
+                music = MusicID.Boss1;
+            }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

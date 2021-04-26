@@ -29,7 +29,16 @@ namespace HandHmod.NPCs.NeoArsenal
             npc.aiStyle = 23;
             aiType = NPCID.EnchantedSword;
             animationType = NPCID.EnchantedSword;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
+
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
+            }
+            else
+            {
+                music = MusicID.Boss1;
+            }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

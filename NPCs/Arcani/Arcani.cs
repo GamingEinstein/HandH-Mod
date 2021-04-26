@@ -47,7 +47,16 @@ namespace HandHmod.NPCs.Arcani
             npc.knockBackResist = 0;
             npc.value = Item.buyPrice(0, 1000000000, 0, 0);
             bossBag = ModContent.ItemType<ArcaniTreasureBag>();
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenHellBoss");
+
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenHellBoss");
+            }
+            else
+            {
+                music = MusicID.LunarBoss;
+            }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

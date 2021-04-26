@@ -24,6 +24,7 @@ using HandHmod.NPCs.VoidCharge;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace HandHmod
@@ -130,15 +131,32 @@ namespace HandHmod
                 return;
             }
             // Make sure your logic here goes from lowest priority to highest so your intended priority is maintained.
-            if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven)
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiome");
-                priority = MusicPriority.BiomeHigh;
+                if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven)
+                {
+                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiome");
+                    priority = MusicPriority.BiomeHigh;
+                }
+                if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven && Main.LocalPlayer.position.Y / 16 > Main.worldSurface)
+                {
+                    music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiomeUnderground");
+                    priority = MusicPriority.BiomeHigh;
+                }
             }
-            if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven && Main.LocalPlayer.position.Y / 16 > Main.worldSurface)
+            else
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/HeavenBiomeUnderground");
-                priority = MusicPriority.BiomeHigh;
+                if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven)
+                {
+                    music = MusicID.TheHallow;
+                    priority = MusicPriority.BiomeHigh;
+                }
+                if (Main.LocalPlayer.GetModPlayer<HandHmodPlayer>().ZoneHeaven && Main.LocalPlayer.position.Y / 16 > Main.worldSurface)
+                {
+                    music = MusicID.UndergroundHallow;
+                    priority = MusicPriority.BiomeHigh;
+                }
             }
         }
     }

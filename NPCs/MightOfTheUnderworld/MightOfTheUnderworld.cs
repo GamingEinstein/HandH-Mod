@@ -46,18 +46,23 @@ namespace HandHmod.NPCs.MightOfTheUnderworld
             npc.damage = 250;
             npc.defense = 100;
             npc.knockBackResist = 0f;
-
             npc.value = Item.buyPrice(gold: 10);
-
             npc.lavaImmune = true;
             npc.noTileCollide = true;
             npc.noGravity = true;
-
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MightOfTheUnderworld");
+            bossBag = ModContent.ItemType<MightOfTheUnderworldTreasureBag>();
 
-            bossBag = mod.ItemType("MightOfTheUnderworldTreasureBag");
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/MightOfTheUnderworld");
+            }
+            else
+            {
+                music = MusicID.Boss2;
+            }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

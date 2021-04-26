@@ -42,8 +42,17 @@ namespace HandHmod.NPCs.VoidCharge
             npc.noTileCollide = true;
             npc.knockBackResist = 0;
             npc.value = Item.buyPrice(0, 1000000000, 0, 0);
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/VoidCharges");
             bossBag = ModContent.ItemType<VoidChargeTreasureBag>();
+
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/VoidCharges");
+            }
+            else
+            {
+                music = MusicID.MartianMadness;
+            }
         }
         public override void AI()
         {

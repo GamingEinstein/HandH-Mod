@@ -33,10 +33,18 @@ namespace HandHmod.NPCs.DevourerOfHellfire
             npc.width = 106;
             npc.height = 120;
             npc.aiStyle = -1;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DevourerOfHellfire");
             bossBag = ModContent.ItemType<DevourerOfHellfireTreasureBag>();
-        }
 
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DevourerOfHellfire");
+            }
+            else
+            {
+                music = MusicID.LunarBoss;
+            }
+        }
         public override void Init()
         {
             base.Init();

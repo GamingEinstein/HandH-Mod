@@ -58,7 +58,16 @@ namespace HandHmod.NPCs.NeoArsenal
             npc.knockBackResist = 0.5f;
             npc.aiStyle = -1;
             bossBag = ModContent.ItemType<NeoArsenalTreasureBag>();
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
+
+            Mod mod = ModLoader.GetMod("HandHmodMusic");
+            if (mod != null)
+            {
+                music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NeoArsenal");
+            }
+            else
+            {
+                music = MusicID.Boss1;
+            }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
