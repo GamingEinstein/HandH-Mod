@@ -1,5 +1,5 @@
-﻿displayName = Heaven & Hellfire
+displayName = Heaven & Hellfire (No Music)
 author = Project Elements
 homepage = https://forums.terraria.org/index.php?threads/heaven-hellfire-alpha-version-0-0-1-2.103427/
-version = 0.0.1.6
+version = 0.0.1.7
 buildIgnore = *.csproj, *.vs
